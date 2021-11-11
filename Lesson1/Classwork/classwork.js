@@ -12,33 +12,39 @@ console.log(result);
 
 // 2. Створити об'єкт book з наступними полями  - назва, кількість сторінок, жанр
 
-let book1 = {
+let book = {
     nazva: 'Гра престолів',
     kilkistStorinok: 150,
     zhanr: 'fantazy'
 }
 // 3. Створити об'єкт book з наступними полями  - назва, кількість сторінок, жанр, автори
-let book2 = {
-    nazva: 'Гра престолів',
-    kilkistStorinok: 150,
-    zhanr: 'fantazy',
-    avtory: ['Джордж Мартін', 'Another avtor']
+{
+    let book = {
+        nazva: 'Гра престолів',
+        kilkistStorinok: 150,
+        zhanr: 'fantazy',
+        avtory: ['Джордж Мартін', 'Another avtor']
+    }
 }
 // 4. Створити маис об'єктів book з наступними полями  - назва, кількість сторінок, жанр, автори. Вивести кожну книгу як окремий об'єкт
-let book3 = [{
-    nazva: 'Гра престолів',
-    kilkistStorinok: 150,
-    zhanr: 'fantazy',
-    avtory: ['Джордж Мартін', 'Another avtor']
-},
-    {
-        nazva: 'Стрілець',
-        kilkistStorinok: 200,
+
+{
+    let book = [{
+        nazva: 'Гра престолів',
+        kilkistStorinok: 150,
         zhanr: 'fantazy',
-        avtory: ['Stiven King', 'Another avtor']
-    }]
-for (let object of book3) {
-    console.log(object);
+        avtory: ['Джордж Мартін', 'Another avtor']
+    },
+        {
+            nazva: 'Стрілець',
+            kilkistStorinok: 200,
+            zhanr: 'fantazy',
+            avtory: ['Stiven King', 'Another avtor']
+        }]
+
+    for (let object of book) {
+        console.log(object);
+    }
 }
 // 5. Напишіть код, який вираховує площу прямокутника висотою 23см. (змінна height) та шириною 10см (змінна width).
 // Значення площі зберігати в змінній s.

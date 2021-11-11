@@ -107,18 +107,20 @@ let middleName;
 let lastName;
 firstName = 'Юрій';
 middleName = 'Анатолійович';
-lastName = 'Станішевський'
+lastName = 'Станішевський';
+let person1;
 let person;
 
+
 person1 = firstName + ' ' + middleName + ' ' + lastName;
-peron = `${firstName} ${middleName} ${lastName}`;
+person = `${firstName} ${middleName} ${lastName}`;
 
 // - За допомогою 3х різних prompt() отримати 3 слова які являються вашими Імям, По-Батькові та роками.
 let myName = prompt('Enter your name');
 let myMiddleName = prompt('Enter your middle name');
 let myYears = prompt('How old are you?');
 //     Вивести "Вітаю *Імя* *По батькові*. Тобі *вік* років".
-document.write(`Вітаю ${myName} ${myMiddleName}. Тобі ${myYears} років`)
+document.write(`<br />Вітаю ${myName} ${myMiddleName}. Тобі ${myYears} років`)
 
 // - За допомогою оператора typeof визначити типи наступних змінних та вивести їх в консоль.
 let a1 = 100;
@@ -130,27 +132,28 @@ console.log(typeof c);
 // - Визначити відповідний оператор в виразах що б вийшов відповідний результат.
 //     В однакових виразах не використовувати однакові оператори!!!
 //     5 ? 6 -> true
-console.log(typeof (5 < 6));
+console.log(5 < 6);
 // 5 ? 6 -> false
-console.log(typeof (5 > 6));
+console.log(5 > 6);
 // 5 ? 6 -> false
-console.log(typeof (5 === 6));
+console.log(5 === 6);
 // 5 ? 6 -> false
-console.log(typeof (5 == 6));
+console.log(5 == 6);
 // 10 ? 10 -> true
-console.log(typeof (10 === 10));
+console.log(10 === 10);
 // 10 ? 10 -> true
-console.log(typeof (10 == 10));
+console.log(10 == 10);
 // 10 ? 10 -> false
-console.log(typeof (10 > 10));
+console.log(10 > 10);
 // 10 ? 10 -> false
-console.log(typeof (10 < 10));
+console.log(10 < 10);
 // 10 ? 10 -> false
-console.log(typeof (10 !== 10));
+console.log(10 !== 10);
 // 123 ? '123' -> false
-console.log(typeof (123 === 123));
+console.log(123 === '123');
 // 123 ? '123' -> true
-console.log(typeof (123 == 123));
+console.log(123 == '123');
+document.write("<br/>");
 // - Подумайте Какие значения выведет в окно браузера следующий фрагмент кода?  и почему?
     let str = "20";
 let a = 5;

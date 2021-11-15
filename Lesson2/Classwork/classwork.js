@@ -62,6 +62,31 @@ if (type === 'number' && var2 === var2) { //var2===var2 исключаеа NaN (
 } else {
     console.log('another value', var2);
 }
+
+//або
+let data, val;
+data = prompt('Введіть будь-яке значення');
+val = 'не задано';
+if (data === null) {
+    type = 'null';
+}
+else if (data === ""){
+    type = 'undefined';
+}
+else if (+data === data ** 1) {
+    val = 1;
+    type = 'number';
+}
+else if (data === 'false'|| data === 'true') {
+    val = 3;
+    type = 'boolean';
+}
+else {
+    val = 2;
+    type = 'string';
+}
+console.log(`Tип даних - ${type} (${data}): val = ${val}`);
+
 /*
 - Задача-гра "чи ми йдемо сьогодні в OKTEN на навчання?".
     Змінна, яка характеризує температуру. Якщо температура від +10 до +22 вивести повідомлення що ми йдемо ВЧИТИСЯ .

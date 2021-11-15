@@ -46,10 +46,10 @@ if (variable === 10) {
 /*- Ми маємо змінну x в яку користувач задає  значення,  якщо в змінну записане число, вивести 1,
     якщо в змінну записали стрінгу вивести 2, якщо булеве значення - 3, якщо об'єкт або масив - 3.
 якщо в змінну записали щось інше, спрацьовує else*/
-let var2;
+let var2, type, value;
 var2 = 5;
-let type = typeof var2;
-let value;
+type = typeof var2;
+
 if (type === 'number' && var2 === var2) { //var2===var2 исключаеа NaN (NaN!==NaN)
     value = 1;
     console.log(value);
@@ -84,6 +84,24 @@ else if (data === 'false'|| data === 'true') {
 else {
     val = 2;
     type = 'string';
+}
+console.log(`Tип даних - ${type} (${data}): val = ${val}`);
+//або
+let parse;
+data = prompt('Введіть будь-яке значення');
+try {
+    parse = JSON.parse(data);
+    type = typeof parse;
+    if (type === 'number') {
+        val = 1;
+    } else if (type === 'boolean') {
+        val = 3;
+    } else if (type === 'object') {
+        val = 3;
+    }
+} catch (e) {
+    type = 'string';
+    val = 2;
 }
 console.log(`Tип даних - ${type} (${data}): val = ${val}`);
 

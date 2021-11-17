@@ -57,7 +57,7 @@ let simpsons = [
     },
 ];
 for (let simpson of simpsons) {
-    document.write(`<div>${simpson.name}- ${simpson.surname}- ${simpson.age}- ${simpson.info}- <img src=${simpson.photo} alt=""></div>`);
+    document.write(`<div>${simpson.name}- ${simpson.surname}- ${simpson.age}- ${simpson.info}- <img src=${simpson.photo} alt="simpson"></div>`);
 }
 /*   <div>
        <h2>NAME SURNAME. age is - AGE</h2>
@@ -68,7 +68,7 @@ for (let simpson of simpsons) {
     document.write(`<div>
         <h2>${simpson.name} ${simpson.surname}. age is - ${simpson.age}</h2>
         <p>${simpson.info}</p>
-        <img src=${simpson.photo} alt="">
+        <img src=${simpson.photo} alt="simpson">
         </div>`);
 }
 
@@ -116,8 +116,7 @@ document.write('<div class="wrapper">');
 for (let product of products) {
     document.write(`<div class="product-card">
         <h3 class="product-title">${product.title.toUpperCase()}. Price -${product.price}</h3>
-        <img src=${product.image} alt="" class="product-image">
+        <img src=${product.image} alt="simpson" class="product-image">
         </div>`);
-
 }
 document.write('</div>');

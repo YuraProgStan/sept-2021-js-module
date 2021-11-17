@@ -4,17 +4,22 @@
 - з 5 значень стрічкового, числового та булевого типу
 - та вивести його в консоль*/
 let array1 = [1, 3, 5, 8, 10];
-array1 [5] = 'value1';
-array1 [6] = 'value2';
-array1 [7] = 'value3';
-array1 [8] = 'value4';
-array1 [9] = 'value5';
-array1 [10] = 1;
-array1 [11] = 7;
-array1 [12] = 'value12';
-array1 [13] = true;
-array1 [14] = false;
+array1[5] = 'value1';
+array1[6] = 'value2';
+array1[7] = 'value3';
+array1[8] = 'value4';
+array1[9] = 'value5';
+array1[10] = 1;
+array1[11] = 7;
+array1[12] = 'value12';
+array1[13] = true;
+array1[14] = false;
+//або
+array1String = ['value1', 'value2', 'value3', 'value4', 'value5'];
+array1Different = [1, 7, 'value12', true, false];
 console.log(array1);
+console.log(array1Different);
+
 console.log('========================================');
 /*-- Створити пустий масив. Наповнити його будь-якими значеннями звертаючись до конкретного індексу. Вивести в консоль*/
 let array4 = [];
@@ -60,6 +65,9 @@ for (const key of array5) {
 console.log('========================================');
 /*- Створити масив з 10 строкрових елементів. Вивести в консоль всі його елементи в циклі.*/
 let array6 = [];
+array6 = ['fsfa', 'sfasdfa', 'sdfasfa', 'dsfa', 'dfsffsfdf', 'dsfaf', 'sfaf', 'dgdfg', 'dgdasgd', 'fadf'];
+
+//або random string
 let characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
 let length;
 let charactersLength = characters.length;

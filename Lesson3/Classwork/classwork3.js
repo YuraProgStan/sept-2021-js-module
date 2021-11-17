@@ -28,7 +28,7 @@ console.log('========================================');
 // 5. перебрати циклом while та вивести  числа тільки парні  значення
 k = 0;
 while (k < array.length) {
-    if (k%2 === 0 ){
+    if (array[k]%2 === 0 ){
         console.log(array[k])
     }
     k++;
@@ -43,7 +43,7 @@ for (let j = 0; j < array.length; j++) {
 console.log('========================================');
 // 7. замінити кожне число кратне 3 на слово "okten"
 for (let j = 0; j < array.length; j++) {
-    if (j%3 === 0 ){
+    if (array[j]%3 === 0 ){
        array[j] = "okten";
     }
 }
@@ -88,7 +88,7 @@ array = [2,17,13,6,22,31,45,66,100,-18];
     }
     console.log('========================================');
     k = array.length - 1;
-    while (k >= 0) {
+    while (array[k] >= 0) {
         if (k%2 === 0 ){
             console.log(array[k])
         }
@@ -102,7 +102,7 @@ array = [2,17,13,6,22,31,45,66,100,-18];
     }
     console.log('========================================');
     for (let j = array.length-1; j >= 0; j--) {
-        if (j%3 === 0 ){
+        if (array[j]%3 === 0 ){
             array[j] = "okten";
         }
 

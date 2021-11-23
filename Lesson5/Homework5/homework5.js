@@ -32,7 +32,7 @@ document.write('<hr>');
 // - створити функцію яка  створює ul з трьома елементами li. Текст li задати через аргумент всім однаковий
 const ulLiFoo = (text) => {
     document.write('<ul>');
-    for (i = 0; i < 3; i++){
+    for (let i = 0; i < 3; i++){
     document.write(`<li>${text}</li>`);
     }
     document.write('</ul>');
@@ -42,7 +42,7 @@ document.write('<hr>');
 // - створити функцію яка  створює ul з трьома елементами li. Текст li задати через аргумент всім однаковий. Кількість li визначається другим аргументом, який є числовим (тут використовувати цикл)
 const ulLiLengthFoo = (text, length) => {
     document.write('<ul>');
-    for (i = 0; i < length; i++){
+    for (let i = 0; i < length; i++){
         document.write(`<li>${text}</li>`);
     }
     document.write('</ul>');
@@ -52,7 +52,7 @@ document.write('<hr>');
 // - створити функцію яка приймає масив примітивних елементів (числа,стрінги,булеві), та будує для них список
 const arrListFoo = (arr) => {
     document.write('<ul>');
-    for (i = 0; i < arr.length; i++){
+    for (let i = 0; i < arr.length; i++){
         if(typeof arr[i] === 'number'|| typeof arr[i] === 'string' || typeof arr[i] === 'boolean'){
         document.write(`<li>${arr[i]}</li>`);
         }

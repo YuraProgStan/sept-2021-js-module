@@ -63,7 +63,7 @@ const zeroEnd = (arr) => {
         let change;
         for (let i = arr.length - 1; i >= 0; i--) {
             if (arr[i] === 0) {
-                for (j = i; j < arr.length - 1; j++) {
+                for (let j = i; j < arr.length - 1; j++) {
                     if (arr[j + 1] === 0 || j === arr.length - 1) {
                         break;
                     } else {

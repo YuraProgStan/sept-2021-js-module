@@ -252,8 +252,8 @@ function reverseArray(array) {
         let reverseArray = [];
         let reverseArrayIndex = 0;
         for (let i = array.length - 1; i >= 0; i--) {
-            reverseArray[reverseArrayIndex] = array[i];
-            reverseArrayIndex++;
+            reverseArray[reverseArrayIndex++] = array[i];
+            // reverseArrayIndex++;
         }
         return reverseArray;
     }
@@ -261,5 +261,50 @@ function reverseArray(array) {
         return 'error enter array';
     }
 }
-
 console.log(reverseArray([5, 7, true, 'okten']));
+//або
+function reverseArray2(array) {
+    if (array) {
+        let reverse = [];
+        for (let i = array.length - 1, ri = 0; i >= 0; i--, ri++) {
+           reverse[ri] = array[i];
+        }
+        return reverse;
+    }
+    else {
+        return 'error enter array';
+    }
+}
+
+console.log(reverseArray2([5, 7, true, 'okten']));
+//або
+function reverseArray3(array) {
+    if (array) {
+        let reverse = [];
+        for (let i = 0, ri = array.length - 1; i < array.length; i++, ri--) {
+            reverse[ri] = array[i];
+        }
+        return reverse;
+    }
+    else {
+        return 'error enter array';
+    }
+}
+
+console.log(reverseArray3([5, 7, true, 'okten']));
+//або
+console.log('--------------------')
+function reverseArray4(array) {
+    if (array) {
+        let reverse = [];
+        for (let i = array.length - 1; i >= 0; i--) {
+            reverse.push(array[i]);
+        }
+        return reverse;
+    }
+    else {
+        return 'error enter array';
+    }
+}
+
+console.log(reverseArray4([5, 7, true, 'okten']));

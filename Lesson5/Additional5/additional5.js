@@ -80,4 +80,4 @@ const zeroEnd = (arr) => {
 zeroEnd([1,0,6,0,3]);
 zeroEnd([0,1,2,3,4]);
 zeroEnd([0,0,1,0]);
-zeroEnd([0,1])
+zeroEnd([0,1]);

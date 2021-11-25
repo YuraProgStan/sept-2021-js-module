@@ -28,7 +28,8 @@ let validate = (email) => {
         point < email.length &&
         email[em + 1] !== "." &&
         email.indexOf(" ") === -1 &&
-        email.indexOf("..") === -1;
+        email.indexOf("..") === -1 &&
+        count (email,'@') === '1';
 
 }
 console.log(validate('someemail@gmail.com'));
@@ -36,7 +37,7 @@ console.log(validate('someeMAIL@gmail.com'));
 console.log(validate('someeMAIL@i.ua'));
 console.log(validate('some.email@gmail.com'));
 console.log(validate('some.em[ail@gmail.com'));
-console.log(validate('som!e.em[ail@gmail.com'));
+console.log(validate('som@e.email@gmail.com'));
 console.log(validate('som!e.em^ail@gmail.com'));
 console.log('============================');
 /*- є масивlet coursesArray = [
@@ -189,7 +190,7 @@ console.log('============================');
     let symb = "о", str = "Астрономия это наука о небесных объектах";
 document.writeln(count(str, symb)) // 5*/
 let symb = "о", str = "Астрономия это наука о небесных объектах";
-let count = (str, stringsearch) => {
+function count (str, stringsearch) {
     let counts = 0;
     for (const element of str) {
         if (element === stringsearch) {

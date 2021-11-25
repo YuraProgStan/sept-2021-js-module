@@ -7,6 +7,17 @@ let n1 = 'Harry Potter'
 let n2 = 'Ron Whisley'
 let n3 = 'Hermione Granger'*/
 let validName = (name) => {
+    return name
+        .replaceAll('..', ' ')
+        .replaceAll('---', ' ')
+        .replaceAll('__', ' ')
+}
+console.log(validName('Harry..Potter'));
+console.log(validName('Ron---Whisley'));
+console.log(validName('Hermione__Granger'));
+console.log('--------------------');
+//або
+let validName1 = (name) => {
     let text = "";
     for(let element of name) {
         if ((element >= 'A' && element <= 'Z') || (element >= 'a' && element <= 'z')){
@@ -26,10 +37,10 @@ let validName = (name) => {
     }
     return resString;
 }
-console.log(validName('Harry..Potter'));
-console.log(validName('Ron---Whisley'));
-console.log(validName('Hermione__Granger'));
-console.log(validName('Hermione...-- []545 Granger---'));
+console.log(validName1('Harry..Potter'));
+console.log(validName1('Ron---Whisley'));
+console.log(validName1('Hermione__Granger'));
+console.log(validName1('Hermione...-- []545 Granger---'));
 console.log('--------------------');
 //або
 let validName2 = (name) => {
@@ -114,6 +125,9 @@ console.log('============================');
 // - створити (або згенерувати, за допомоги попередньої функції) масив рандомних цілих числових значень. відфільтрувати  його за допомоги filter, залишивши тільки парні числа
 let filter = myRandom.filter(element => element % 2 === 0);
 console.log(filter);
+console.log('--------------------');
+let filter2 = myRandom.filter(element => !(element%2));
+console.log(filter2);
 console.log('============================');
 // - створити масив рандомних цілих числових значень (або згенерувати, за допомоги попередньої функції) . за допомоги map та колбеку перетворити всі об'єкти в масиві на стрінгові.
 let map = myRandom.map(element => element.toString());

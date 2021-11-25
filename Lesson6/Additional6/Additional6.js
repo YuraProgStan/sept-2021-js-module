@@ -37,6 +37,7 @@ console.log(validate('someeMAIL@i.ua'));
 console.log(validate('some.email@gmail.com'));
 console.log(validate('some.em[ail@gmail.com'));
 console.log(validate('som!e.em[ail@gmail.com'));
+console.log(validate('som!e.em^ail@gmail.com'));
 console.log('============================');
 /*- є масивlet coursesArray = [
     {

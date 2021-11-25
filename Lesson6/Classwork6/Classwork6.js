@@ -187,7 +187,6 @@ let filterArray = filterArr(coursesAndDurationArray);
 console.log(filterArray);
 /*- Напишите функцию cutString(str, n), которая делит строку на подстроки, состоящие из n символов.
 document.writeln(cutString('наслаждение',3))*/ // [нас,лаж,ден,ие]
-
 let cutString = (str, n) => {
     let arr = [];
     let length = str.length/n;
@@ -203,3 +202,16 @@ let cutString = (str, n) => {
 let arrCutString = cutString('наслаждение',3);
 console.log(arrCutString);
 document.writeln(arrCutString);
+document.write('<br>');
+console.log('--------------------');
+let cutString2 = (str, n) => {
+   let arr = [];
+   while (str.length){
+   arr.push(str.substring(0, n));
+   str = str.substring(n);
+    }
+    return arr;
+}
+let arrCutString2 = cutString2('наслаждение',3);
+console.log(arrCutString2);
+document.writeln(arrCutString2);

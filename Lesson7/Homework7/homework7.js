@@ -4,13 +4,26 @@ const numSum = (number) => {
     }
     else {
         let rez = number % 10;
-        let rest = Math.floor(number / 10);
+        let rest = Math.trunc(number / 10); //берет значение до запятой
         console.log('rez = ' + rez, 'rest = ' + rest);
         return rez + numSum(rest);
     }
 }
 console.log(numSum(234));
+const numSum1 = (number) => {
+    return number.toString().split('').reduce((sum, current) => +sum + +current);
+}
+console.log(numSum1(234));
 
+const numSum2 = (number) => {
+    return eval(number.toString().replace(/(\d)(?=\d)/g, '$1+'));
+}
+console.log(numSum2(234));
+
+const numSum3 = (number) => {
+    return [...number.toString()].map(e =>parseInt(e)).reduce((sum,current)=>sum+current);
+}
+console.log(numSum3(234));
 
 /*- Створити функцію конструктор для об'єктів User з полями id, name, surname , email, phone
 створити пустий масив, наповнити його 10 об'єктами new User(....)*/

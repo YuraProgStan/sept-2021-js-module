@@ -1,5 +1,5 @@
 // - Створити функцію конструктор яка дозволяє створювати об'єкти car, з властивостями модель, виробник, рік випуску, максимальна швидкість, об'єм двигуна. додати в об'єкт функції:
-function Car(model, make, year, maxSpeed, maxPower, addDriver) {
+function Car(model, make, year, maxSpeed, maxPower) {
     this.model = model;
     this.make = make;
     this.year = year;
@@ -18,13 +18,19 @@ function Car(model, make, year, maxSpeed, maxPower, addDriver) {
        `);
     };
     this.increaseMaxSpeed = function (newSpeed) {
-        console.log(`We are driving with a speed ${this.maxSpeed + newSpeed} por hour`);
+        console.log(`We are driving with a speed ${this.maxSpeed += newSpeed} por hour`);
     };
     this.changeYear = function (newValue) {
         this.year = newValue;
         console.log(`Year - ${this.year}`);
     };
-    this.addDriver = addDriver;
+    this.addDriver = driver => {
+        this.driver = driver;
+    };
+  /*  this.addDriver = function(driver) {
+        this.driver = driver
+    };*/
+
 }
 
 function AddDriver(name, drivingExperience) {
@@ -45,7 +51,8 @@ cars.increaseMaxSpeed(20);
 cars.changeYear(2019);
 // -- addDriver (driver) - приймає об'єкт який "водій" з довільним набором полів, і додає його в поточний об'єкт car
 let driver = new AddDriver('Sasha', 10);
- cars = new Car('Model S', 'Tesla', 2021, 322, 250, driver);
+// cars.addDriver({name: 'Sasha', drivingExperience: 10}); //добавляет объект
+cars.addDriver(driver); //добавляет объект AddDriver
  console.log(cars);
 
 // - (Те саме, тільки через клас)
@@ -79,16 +86,12 @@ class Car1 {
         this.year = newValue;
         console.log(`Year - ${this.year}`);
     };
+    addDriver (driver)  {
+        this.driver = driver;
+    };
 }
 
-class AddDriver1 extends Car1  {
-    constructor(model, make, year, maxSpeed, maxPower,addDriver){
-        super(model, make, year, maxSpeed, maxPower);
-        this.addDriver = addDriver;
-    }
-
-}
-class Driver1 {
+class AddDriver1 {
     constructor(name, drivingExperience) {
         this.name = name;
         this.drivingExperience = drivingExperience;
@@ -105,10 +108,11 @@ cars1.increaseMaxSpeed(20);
 // -- changeYear (newValue) - змінює рік випуску на значення newValue
 cars1.changeYear(2019);
 // -- addDriver (driver) - приймає об'єкт який "водій" з довільним набором полів, і додає його в поточний об'єкт car
-let driver1 = new Driver1('Sasha', 10);
-console.log(driver1);
-let addDriver1 = new AddDriver1('Model S', 'Tesla', 2021, 322, 250, driver1);
-console.log(addDriver1);
+let driver1 = new AddDriver1('Sasha', 10);
+// cars1.addDriver({name: 'Sasha', drivingExperience: 10}); //добавляет объект
+cars1.addDriver(driver1); //добавляет объект AddDriver1
+
+console.log(cars1);
 
 // -створити класс/функцію конструктор попелюшка з полями ім'я, вік, розмір ноги. Створити масив з 10 попелюшок.
 class Cinderella{

@@ -63,6 +63,11 @@ let arrClass = classAttributeIdRules.split(' ');
 for (const elemClass of arrClass) {
     console.log(elemClass);
 }
+//або
+let classListIdRules = divIdRules.classList;
+for (const elemClass of classListIdRules) {
+    console.log(elemClass);
+}
 // -- поміняти колір тексту у всіх елементів fc_rules на червоний
 let classFc_rules = document.getElementsByClassName('fc_rules');
 for (const elementFc_rules of classFc_rules) {

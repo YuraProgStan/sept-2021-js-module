@@ -45,7 +45,7 @@ for (const aElement of a) {
 // g) отримує всі елементи 'a' та у випадку, якщо текстовий контен елементу дорівнює link3, змінює йому розмір тексту на 40 пікселів
 for (const aElement of a) {
     if (aElement.innerText === 'link3') {
-        aElement.style.width = '40px';
+        aElement.style.fontSize = '40px';
     }
 }
 // h) отримує всі елементи 'a' та додає їм клас element_XXX. Де XXX - текстовий контент елементу a

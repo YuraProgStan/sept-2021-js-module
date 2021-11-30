@@ -57,6 +57,13 @@ let recElements = (startElement, styleChange) => {
 for (const recElement of document.body.children) {
     recElements(recElement, {backgroundColor:'red', color:'blue'});
 }
+//aбо
+let anyElements = document.body.getElementsByTagName('*');
+for (const anyElement of anyElements) {
+    anyElement.style.backgroundColor = 'red';
+    anyElement.style.color = 'blue';
+}
+
 // -- отримати весь список класів елемента з id=rules і вивести їх в console.log
 let classAttributeIdRules = divIdRules.getAttribute('class');
 let arrClass = classAttributeIdRules.split(' ');

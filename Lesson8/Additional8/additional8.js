@@ -48,3 +48,21 @@ let recClass2 = (elementStart) => {
 let arrSaveF = arrSave();
 recClass2(document.body);
 console.log(arrSaveF.get());
+
+// або
+let recClass3 = (elementStart, startArr = []) => {
+    let getClassList = elementStart.classList;
+    if(getClassList.length){
+        for (const classNameElement of getClassList) {
+            startArr.push(classNameElement);
+        }
+    }
+    if(elementStart.children.length){
+        for (const element of elementStart.children){
+            recClass(element, startArr);
+        }
+    }
+    return startArr;
+}
+let arr3 = recClass3(document.body);
+console.log(arr3);

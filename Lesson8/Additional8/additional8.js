@@ -143,8 +143,8 @@ let recClass6 = (elementStart) => {
 let closure = funcArr();
 recClass6(document.body);
 console.log(closure('get'));
-//або
 
+//або
 let recClass7 = (elementStart) => {
     function work(elem) {
         if (elem.classList.length) {

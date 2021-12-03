@@ -22,21 +22,21 @@ let unique = (arr) => {
     return Array.from(new Set(arr));
 }
 
-//або
+//або лучшее решение
 let arrSave = function () {
     let _x = [];
-    let arrWorker = {
-        set: function (x) {
+    return {
+        set (x) {                           //set(x), тоже самое, что set: funtion(x) в объекте
             for (const x1 of x) {
                 let value = _x
                 _x = value.concat(x1);
             }
         },
-        get: function () {
+        get () {
             return _x;
         }
     }
-    return arrWorker;
+
 }
 
 let recClass2 = (elementStart) => {
@@ -73,7 +73,7 @@ let recClass3 = (elementStart, startArr = []) => {
 let arr3 = recClass3(document.body);
 console.log(arr3);
 
-// або без рекурсии
+// або без рекурсии самое простое
 let recClass4 = (elementStart) => {
     let arr = [];
     let allTags = elementStart.getElementsByTagName('*');
@@ -144,7 +144,7 @@ let closure = funcArr();
 recClass6(document.body);
 console.log(closure('get'));
 
-//або
+//або функция внутри
 let recClass7 = (elementStart) => {
     function work(elem) {
         if (elem.classList.length) {

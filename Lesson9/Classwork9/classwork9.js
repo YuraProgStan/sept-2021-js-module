@@ -93,10 +93,10 @@ for (const simpson of simpsons) {
     let divMember = document.createElement('div');
     divMember.classList.add('member');
     let divName = document.createElement('div');
-    let divSurname = document.createElement('div');
-    let divAge = document.createElement('div');
-    let divInfo = document.createElement('div');
-    let divPhoto = document.createElement('div');
+    let divSurname = divName.cloneNode();
+    let divAge = divName.cloneNode();
+    let divInfo = divName.cloneNode();
+    let divPhoto = divName.cloneNode();
     let img = document.createElement('img');
     divName.innerText = simpson.name;
     divSurname.innerText = simpson.surname;
@@ -254,17 +254,17 @@ let coursesArray = [
 ];
 for (const course of coursesArray) {
     let divCourse = document.createElement('div');
-    let divH2 = document.createElement('div');
+    let divH2 = divCourse.cloneNode();
     let h2 = document.createElement('h2');
 
-    let divWrapperP1P2 = document.createElement('div');
-    let divP1 = document.createElement('div');
+    let divWrapperP1P2 = divCourse.cloneNode();
+    let divP1 = divCourse.cloneNode();
     let p1 = document.createElement('p');
 
-    let divP2 = document.createElement('div');
-    let p2 = document.createElement('p');
+    let divP2 = divCourse.cloneNode();
+    let p2 = p1.cloneNode();
 
-    let divUl = document.createElement('div');
+    let divUl = divCourse.cloneNode();
     let ul = document.createElement('ul');
     for (const module of course.modules) {
         let li = document.createElement('li');

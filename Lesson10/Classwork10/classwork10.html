@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Classwork10</title>
+    <style>
+        #f3,#f4,#f5 {
+            margin-top: 50px;
+        }
+
+        input, button {
+            font-size: 18px;
+        }
+
+        .table-create {
+            margin-bottom: 20px;
+            border: 1px solid #444;
+            font-size: 24px;
+        }
+
+        .table-create tr:nth-of-type(odd) {
+            background: lightsteelblue;
+        }
+
+        .table-create td {
+            padding: 10px;
+        }
+    </style>
+
+</head>
+<body>
+<form action="/someaction" id='f1' name='first'>
+    <input type="text" name='input'>
+</form>
+<form action="/someaction" id='f2' name='first'>
+    <input type="text" name='input'>
+</form>
+<button id='btn1'>Show console values of forms</button>
+
+<form action="/someaction" id='f3' name='input2'>
+    <input type="number" min="1" step="1" id='number1' name='input2'>
+    <input type="number" min="1" step="1" id='number2' name='input2'>
+    <input type="text" id='cellValue' name='input2'>
+</form>
+<button id='btn2'>Create table</button>
+<form action="/someaction" id='f4' name='third'>
+    <input type="text" id ='input3'>
+</form>
+<button id='btn3'>Validate your words</button>
+<form action="/someaction" id='f5' name='fourth'>
+    <input type="text" id ='input4'>
+</form>
+<button id='btn4'>Validate your words</button>
+<script src="classwork10.js"></script>
+</body>
+</html>

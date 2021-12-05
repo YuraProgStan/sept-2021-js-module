@@ -13,7 +13,7 @@ div.style.fontSize = '16px';
 // - додати цей блок в body.
 document.body.appendChild(div);
 // - клонувати його повністю, та додати клон в body.
-let cloneDiv = div.cloneNode();
+let cloneDiv = div.cloneNode(true);
 document.body.appendChild(cloneDiv);
 //
 // - Є масив:

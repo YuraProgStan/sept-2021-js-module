@@ -92,21 +92,20 @@ for (const simpson of simpsons) {
 for (const simpson of simpsons) {
     let divMember = document.createElement('div');
     divMember.classList.add('member');
-    let divName = document.createElement('div');
-    let divSurname = divName.cloneNode();
-    let divAge = divName.cloneNode();
-    let divInfo = divName.cloneNode();
-    let divPhoto = divName.cloneNode();
-    let img = document.createElement('img');
-    divName.innerText = simpson.name;
-    divSurname.innerText = simpson.surname;
-    divAge.innerText = simpson.age;
-    divInfo.innerText = simpson.info;
-    img.src = simpson.photo;
-    divPhoto.appendChild(img);
+    for (let simpsonElement in simpson) {
+        let divSimpsonElement = document.createElement('div');
+        if (simpsonElement === 'photo') {
+            let img = document.createElement('img');
+            img.src = simpson[simpsonElement];
+            divSimpsonElement.appendChild(img);
+            divMember.appendChild(divSimpsonElement);
 
-divMember.append(divName, divSurname, divAge, divInfo, divPhoto);
+        } else {
+            divSimpsonElement.innerText = simpson[simpsonElement];
+            divMember.appendChild(divSimpsonElement);
+        }
 
+    }
     document.body.appendChild(divMember);
 }
 /*
@@ -252,34 +251,41 @@ let coursesArray = [
         modules: ['html', 'css', 'js', 'mysql', 'mongodb', 'react', 'angular', 'aws', 'docker', 'git', 'sass']
     }
 ];
-for (const course of coursesArray) {
-    let divCourse = document.createElement('div');
-    let divH2 = divCourse.cloneNode();
-    let h2 = document.createElement('h2');
+coursesArray.forEach(value => {
+        let divCourse = document.createElement('div');
+        divCourse.classList.add('course');
+        let divH2 = document.createElement('div');
+    divH2.classList.add('div-title');
+        let h2 = document.createElement('h2');
 
-    let divWrapperP1P2 = divCourse.cloneNode();
-    let divP1 = divCourse.cloneNode();
-    let p1 = document.createElement('p');
+        let divWrapperP1P2 = document.createElement('div');
+        divWrapperP1P2.classList.add('wrapper-md-hd');
+        let divP1 = document.createElement('div');
+        divP1.classList.add('md');
+        let p1 = document.createElement('p');
 
-    let divP2 = divCourse.cloneNode();
-    let p2 = p1.cloneNode();
+        let divP2 = document.createElement('div');
+        divP2.classList.add('hd');
+        let p2 = p1.cloneNode();
 
-    let divUl = divCourse.cloneNode();
-    let ul = document.createElement('ul');
-    for (const module of course.modules) {
-        let li = document.createElement('li');
-        li.innerText = module;
-        ul.appendChild(li);
+        let divUl = document.createElement('div');
+        let ul = document.createElement('ul');
+        for (const module of value.modules) {
+            let li = document.createElement('li');
+            li.innerText = module;
+            ul.appendChild(li);
+        }
+
+        h2.innerText = value.title;
+        p1.innerText = value.monthDuration;
+        p2.innerText = value.hourDuration;
+
+        divH2.appendChild(h2);
+        divUl.appendChild(ul);
+        divP1.appendChild(p1);
+        divP2.appendChild(p2);
+        divWrapperP1P2.append(divP1, divP2)
+        divCourse.append(divH2, divWrapperP1P2, divUl);
+        document.body.appendChild(divCourse);
     }
-    h2.innerText = course.title;
-    p1.innerText = course.monthDuration;
-    p2.innerText = course.hourDuration;
-
-    divH2.appendChild(h2);
-    divUl.appendChild(ul);
-    divP1.appendChild(p1);
-    divP2.appendChild(p2);
-    divWrapperP1P2.append(divP1, divP2)
-    divCourse.append(divH2, divWrapperP1P2, divUl);
-    document.body.appendChild(divCourse);
-}
+)

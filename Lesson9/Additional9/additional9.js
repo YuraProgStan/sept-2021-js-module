@@ -468,41 +468,219 @@ let usersList = [
     }
 ];
 
-for (const usersListElement of usersList) {
-    let divUserList = document.createElement('div');
-    let divUserListId = divUserList.cloneNode();
-    let divUserListName = divUserList.cloneNode();
-    let divUserListEmail = divUserList.cloneNode();
-    let divUserListAddress = divUserList.cloneNode();
-    divUserListId.innerText = usersListElement.id;
-    divUserListName.innerText = usersListElement.name;
-    divUserListEmail.innerText = usersListElement.email;
-    let divAddressStreet = document.createElement('div');
-    let divAddressSuite = divAddressStreet.cloneNode();
-    let divAddressCity = divAddressStreet.cloneNode();
-    let divAddressZipCode = divAddressStreet.cloneNode();
-    let divAddressGeo = divAddressStreet.cloneNode();
-    divAddressStreet.innerText = usersListElement.address.street;
-    divAddressSuite.innerText = usersListElement.address.suite;
-    divAddressCity.innerText = usersListElement.address.city;
-    divAddressZipCode.innerText = usersListElement.address.zipcode;
-    for (let userAddressGeoElement in usersListElement.address.geo) {
-        let divUserAddressGeoElement = document.createElement('div');
-        divUserAddressGeoElement.innerText = userAddressGeoElement;
-        divAddressGeo.appendChild(divUserAddressGeoElement)
-    }
-    divUserListAddress.append(divAddressStreet, divAddressSuite, divAddressCity, divAddressZipCode, divAddressGeo);
-let divUserListPhone = divUserList.cloneNode();
-let divUserListWebsite = divUserList.cloneNode();
-let divUserListCompany = divUserList.cloneNode();
-divUserListPhone.innerText = usersListElement.phone;
-divUserListWebsite.innerText = usersListElement.website;
 
-    for (let userListCompanyElement in usersListElement.company) {
-        let divUserListCompanyElement  = document.createElement('div');
-        divUserListCompanyElement.innerText = userListCompanyElement ;
-        divUserListCompany.appendChild(divUserListCompanyElement)
+usersList.forEach(value => {
+        let divUserList = document.createElement('div');
+        divUserList.style.display = 'flex';
+        divUserList.style.flexDirection = 'column';
+        divUserList.style.border = '1px solid black';
+        divUserList.style.marginBottom = '10px';
+        for (const key in value) {
+            let divValueElement = document.createElement('div');
+            divValueElement.style.border = '0.5px solid grey';
+            divValueElement.style.padding = '10px';
+            if (key === 'address' || key === 'company') {
+                divValueElement.innerText = key;
+                for (const keyElement in value[key]) {
+                    let divValueKeyElement = document.createElement('div');
+                    divValueKeyElement.style.border = '0.5px solid grey';
+                    divValueKeyElement.innerText = key;
+                    if (keyElement === 'geo') {
+                        divValueKeyElement.innerText = keyElement;
+                        let divKeyElementGeoLat = document.createElement('div');
+                        divKeyElementGeoLat.style.border = '0.5px solid grey';
+                        let divKeyElementGeoLng = document.createElement('div');
+                        divKeyElementGeoLng.style.border = '0.5px solid grey';
+                        divKeyElementGeoLat.innerText = `${keyElement}:  ${value[key][keyElement].lat}`;
+                        divKeyElementGeoLng.innerText = `${keyElement}:  ${value[key][keyElement].lng}`;
+                        divValueKeyElement.style.border = '1px solid black'
+                        divValueKeyElement.append(divKeyElementGeoLat, divKeyElementGeoLng);
+                    } else {
+                        divValueKeyElement.innerText = `${keyElement}:  ${value[key][keyElement]}`;
+                    }
+                    divValueElement.appendChild(divValueKeyElement);
+                }
+            } else {
+                divValueElement.innerText = `${key}: ${value[key]}`;
+            }
+            divUserList.append(divValueElement);
+        }
+        document.body.appendChild(divUserList);
     }
-divUserList.append(divUserListId, divUserListName, divUserListEmail, divUserListAddress, divUserListPhone, divUserListWebsite, divUserListCompany);
-document.body.appendChild(divUserList);
+)
+newUsersList = usersList = [
+    {
+        id: 1,
+        name: 'Leanne Graham',
+        username: 'Bret',
+        email: 'Sincere@april.biz',
+        address: {
+            street: 'Kulas Light',
+            suite: 'Apt. 556',
+            city: 'Gwenborough',
+            zipcode: '92998-3874',
+            geo: {
+                lat: '-38.2386',
+                lng: '57.2232'
+            }
+        },
+        phone: '1-770-736-8031 x56442',
+        website: 'hildegard.org',
+        company: {
+            name: 'Romaguera-Crona',
+            catchPhrase: 'Multi-layered client-server neural-net',
+            bs: 'harness real-time e-markets'
+        }
+    },
+    {
+        id: 2,
+        name: 'Ervin Howell',
+        username: 'Antonette',
+        email: 'Shanna@melissa.tv',
+        address: {
+            street: 'Victor Plains',
+            suite: 'Suite 879',
+            city: 'Wisokyburgh',
+            zipcode: '90566-7771',
+            geo: {
+                lat: '-38.2386',
+                lng: '57.2232'
+            }
+        },
+        phone: '010-692-6593 x09125',
+        website: 'anastasia.net',
+        company: {
+            name: 'Deckow-Crist',
+            catchPhrase: 'Proactive didactic contingency',
+            bs: 'synergize scalable supply-chains'
+        }
+    },
+    {
+        id: 3,
+        name: 'Clementine Bauch',
+        username: 'Samantha',
+        email: 'Nathan@yesenia.net',
+        address: {
+            street: 'Douglas Extension',
+            suite: 'Suite 847',
+            city: 'McKenziehaven',
+            zipcode: '59590-4157',
+            geo: {
+                lat: '-38.2386',
+                lng: '57.2232'
+            }
+        },
+        phone: '1-463-123-4447',
+        website: 'ramiro.info',
+        company: {
+            name: 'Romaguera-Jacobson',
+            catchPhrase: 'Face to face bifurcated interface',
+            bs: 'e-enable strategic applications'
+        }
+    }]
+newUsersList.forEach(value => {
+        let divUserList = document.createElement('div');
+        divUserList.style.display = 'flex';
+        divUserList.style.flexDirection = 'column';
+        divUserList.style.border = '1px solid black';
+        divUserList.style.marginBottom = '10px';
+        let i = 0;
+        let divValueElement = [];
+
+        function recObj(value, k = 0, l = 0, s = 0) {
+            for (let key in value) {
+                let index = i++;
+                divValueElement[index] = document.createElement('div');
+                divValueElement[index].style.border = '0.5px solid grey';
+                divValueElement[index].style.padding = '10px';
+                if (typeof value[key] === 'string' || typeof value[key] === 'number') {
+                    if (k === 0) {
+                        divValueElement[index].innerText = `${key}: ${value[key]}`;
+                        divUserList.appendChild(divValueElement[index]);
+                    } else if (k === 1) {
+                        divValueElement[index].innerText = `${key}: ${value[key]}`;
+                        divValueElement[l].appendChild(divValueElement[index]);
+                        divUserList.appendChild(divValueElement[l]);
+                    } /*else {
+                        divValueElement[index].innerText = `${key}: ${value[key]}`;
+                        divValueElement[s].appendChild(divValueElement[index]);
+                        divValueElement[l].appendChild(divValueElement[s]);
+                        divUserList.appendChild(divValueElement[l]);
+                    }*/
+                } else if (typeof value[key] === 'object' && value[key] !== null) {
+                    if (k === 0) {
+
+                        divValueElement[index].innerText = `${key}`;
+                        l = index;
+
+                    } /*else if (k === 1) {
+                        s = l;
+                        divValueElement[s].innerText = `${key}`;
+                    }*/
+
+                    if (k === 0) {
+                        recObj(value[key], 1, l);
+
+
+                    } /*else if (k === 1) {
+                        recObj(value[key], 2, l, s);
+                    }*/
+                }
+
+            }
+        }
+
+        recObj(value);
+        document.body.appendChild(divUserList);
+    }
+)
+
+let hr = document.createElement('hr');
+hr.style.height = '5px';
+hr.style.backgroundColor = 'red';
+document.body.appendChild(hr);
+let div3 = document.createElement('div');
+let div4 = document.createElement('div');
+if (div3 === div4) {
+    console.log(true);
+} else {
+    console.log(false);
 }
+//доработать
+usersList.forEach(value => {
+        let divUserList = document.createElement('div');
+        divUserList.style.display = 'flex';
+        divUserList.style.flexDirection = 'column';
+        divUserList.style.border = '1px solid black';
+        divUserList.style.marginBottom = '10px';
+        let index = 0;
+        let divValueElement = [];
+        function recObj(value, k = 0, div = document.createElement('div')) {
+            for (let key in value) {
+                index++;
+                divValueElement[index] = document.createElement('div');
+                divValueElement[index].style.border = '0.5px solid grey';
+                divValueElement[index].style.padding = '10px';
+                if (typeof value[key] === 'string' || typeof value[key] === 'number') {
+                    if (k === 0) {
+                        divValueElement[index].innerText = `${key}: ${value[key]}`;
+                        divUserList.appendChild(divValueElement[index]);
+                    } else if (k === 1) {
+                        divValueElement[index].innerText = `${key}: ${value[key]}`;
+                        div.appendChild(divValueElement[index]);
+                        divUserList.appendChild(div);
+                    }
+                } else if (typeof value[key] === 'object' && value[key] !== null) {
+                    if (k === 0) {
+                        divValueElement[index].innerText = `${key}`;
+                        div = divValueElement[index];
+                        console.log(div);
+                    }
+                    recObj(value[key], 1, div);
+                }
+            }
+        }
+        recObj(value);
+        document.body.appendChild(divUserList);
+    }
+)

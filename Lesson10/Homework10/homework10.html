@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Homework10</title>
+    <style>
+        button, input {
+            font-size: 18px;
+        }
+        .menu {
+            display: flex;
+            column-gap: 5px;
+        }
+
+        .menu li {
+            list-style: none;
+        }
+
+        .hide-menu {
+            position: absolute;
+            display: flex;
+            flex-direction: column;
+            padding: 10px;
+            top: -500px;
+        }
+        .menu li {
+            padding: 10px;
+            background: darkred;
+        }
+        .menu a {
+            font-size: 20px;
+            color: white;
+            text-decoration: none;
+        }
+        li.click-element {
+            position: relative;
+            padding-right: 25px;
+            background-image: url("img/triangle.png");
+            background-repeat: no-repeat;
+            background-position: 95% 50%;
+            background-size: 15px;
+        }
+        .toggle {
+            top: 24px;
+        }
+        .comment{
+            display: flex;
+            flex-direction: column;
+            row-gap: 10px;
+            border: 1px solid green;
+            width: 25%;
+            font-size: 20px;
+        }
+        .comment div:nth-child(2){
+            font-weight: bold;
+            font-size: 25px;
+        }
+        p{
+            margin: 0;
+        }
+        .comment button{
+            border-radius: 10px;
+        }
+
+    </style>
+</head>
+<body>
+<div id='text'>Some text</div>
+<button class="btn1">Click me</button>
+<button class="btn2">Click me for hide</button>
+<form action="/someaction" id='f1'>
+    <input type="text" id="username" value="Write your age">
+    <input type="number" id="age" value="0">
+    <button type="submit" class="btn3">Click for varification your age</button>
+</form>
+<ul class="menu">
+    <li><a href="#">Page1</a></li>
+    <li><a href="#">Page2</a></li>
+    <li class="click-element"><a href="#">Page3 </a>
+        <ul class="hide-menu">
+            <li><a href="#">Page3.1</a></li>
+            <li><a href="#">Page3.2</a></li>
+            <li><a href="#">Page3.3</a></li>
+        </ul>
+    </li>
+</ul>
+
+<script src="homework10.js"></script>
+
+</body>
+</html>

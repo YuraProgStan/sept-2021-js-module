@@ -74,7 +74,7 @@ comments.forEach(value =>{
     divComment.classList.add('comment');
     let btn = document.createElement('button');
     divComment.classList.add('btn-comment');
-    btn.innerText = 'hide comment';
+    btn.innerText = 'hide/show comment';
     divComment.appendChild(btn);
     for (const key in value) {
         let divKey = document.createElement('div');
@@ -90,6 +90,6 @@ let commentsButtons = document.getElementsByClassName('btn-comment');
 let p = document.querySelectorAll('.comment div:nth-child(3)');
 for (let i = 0; i < commentsButtons.length; i++) {
     commentsButtons[i].onclick = () =>{
-        p[i].style.display = 'none';
+        p[i].classList.toggle('toggle-comments') ;
     }
 }

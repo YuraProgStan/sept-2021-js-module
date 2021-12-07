@@ -83,7 +83,7 @@ f1.onsubmit = function (e) {
  при нажатии вперед, вы переходите к дочернему элементу, при еще одном нажатии на "вперед", вы переходите к следующему дочернему элементу (лежащему на одном уровне)
  НО если у (какого-либо)дочеренего элемента есть дети, то нажатие "вперед" позволяет нам войти внутрь элемента и  выводит первого ребенка. и тд.
  Когда все дети заканчиваются, мы выходим из данного дочернего элемента и переходим к следующему, лежащему с ним на одном уровне*/
-const getChildren = (element) => {
+/*const getChildren = (element) => {
     const childElements = [...element.children];
     if (childElements.length > 0) {
         childElements.map(elem => {
@@ -93,7 +93,7 @@ const getChildren = (element) => {
             }
         })
     }
-}
+}*/
 let foo = function (element) {
     let btnForward = document.createElement('button');
     btnForward.classList.add('forward');

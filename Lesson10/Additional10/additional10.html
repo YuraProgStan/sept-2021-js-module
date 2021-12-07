@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Additional 10</title>
+    <style>
+        .container {
+            position: relative;
+        }
+
+        .text1 {
+            width: 500px;
+            height: 300px;
+            background: red;
+            color: black;
+            font-size: 20px;
+        }
+
+        .text2 {
+            width: 200px;
+            height: 100px;
+            background: blue;
+        }
+
+        .text3 {
+            width: 800px;
+            height: 300px;
+            background: cadetblue;
+        }
+
+        .pop-up {
+            padding: 10px;
+            font-size: 20px;
+            width: 300px;
+            height: 300px;
+            position: absolute;
+            top: -500px;
+            left: 50%;
+            background: cornsilk;
+            transform: translateX(-50%);
+        }
+
+        .add-pop-up {
+            top: 100px;
+            height: fit-content;
+        }
+
+        .carousel {
+            width: 600px;
+            height: 400px;
+            position: relative;
+            background: gainsboro;
+        }
+
+        .img-block {
+            width: 600px;
+            height: 400px;
+            background-size: 600px 400px;
+            background-repeat: no-repeat;
+        }
+
+        .arrows {
+            position: absolute;
+            width: 600px;
+            height: 400px;
+            display: flex;
+            justify-content: space-between;
+            align-content: center;
+            left: 0;
+            top: 0;
+        }
+
+        .arrow {
+            width: 50px;
+
+            z-index: 2;
+        }
+
+        .arrow-left {
+            background-image: url("./images/arrow.png");
+            background-repeat: no-repeat;
+            background-size: 40px;
+            background-position: center;
+            transform: rotate(180deg);
+
+        }
+
+        .arrow-right {
+            background-image: url("./images/arrow.png");
+            background-repeat: no-repeat;
+            background-size: 40px;
+            background-position: center;
+
+        }
+    </style>
+
+</head>
+<body>
+<div class="container">
+    <div class="pop-up"></div>
+    <div id="special1" class="div1 text1">Some text</div>
+    <div id="special2" class="div1 text2">Some text</div>
+    <div id="special3" class="div1 text3">Some text</div>
+    <form action="/someactio" id='f1'>
+        <input type="checkbox" name='status'>
+        <input type="checkbox" name='age'>
+        <input type="checkbox" name='city'>
+        <button id="btn">Validate checkbox</button>
+    </form>
+    <div class="carousel">
+        <div class="img-block"></div>
+        <div class="arrows">
+            <div class="arrow arrow-left"></div>
+            <div class="arrow arrow-right"></div>
+        </div>
+    </div>
+</div>
+<div class="selection">
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odio, vel.</p>
+    <button id="select">Select</button>
+</div>
+<script src="additional10.js"></script>
+</body>
+</html>

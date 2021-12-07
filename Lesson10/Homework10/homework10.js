@@ -21,9 +21,9 @@ document.body.append(hr);*/
 btn2.innerText = 'Click me for hide';
 document.body.append(btn2);*/
 let btn2 = document.getElementsByClassName('btn2')[0];
-btn2.onclick = (function () { //стрелочная функция будет ссылаться на window
+btn2.onclick = function () { //стрелочная функция будет ссылаться на window
     this.style.display = 'none';
-});
+};
 //або
 btn2.addEventListener("click", function () {
     this.style.display = 'none';

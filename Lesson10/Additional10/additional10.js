@@ -133,6 +133,16 @@ let lenghth = arrImagesUrl.length - 1;
 let imageBlock = document.getElementsByClassName('img-block')[0];
 let arrowLeft = document.getElementsByClassName('arrow-left')[0];
 let arrowRight = document.getElementsByClassName('arrow-right')[0];
+let boolets = document.getElementsByClassName('boolets')[0];
+let boolet = document.createElement('div');
+boolet.classList.add('boolet');
+for (let j = 0; j <= lenghth; j++) {
+    boolets.appendChild(boolet.cloneNode(false));
+}
+let booletActive = document.getElementsByClassName('boolet')[0];
+booletActive.classList.add('boolet-active');
+let booletArr =  document.getElementsByClassName('boolet');
+
 imageBlock.style.backgroundImage = "url('./images/" + arrImagesUrl[0] + "')";
 let i = 0;
 arrowRight.addEventListener('click', funcNext);
@@ -160,7 +170,13 @@ function funcPrev() {
 }
 
 let updatePostion = function (i) {
+    for (const element of booletArr) {
+        if (element.classList.contains('boolet-active')){
+            element.classList.remove('boolet-active');
+        }
+    }
     imageBlock.style.backgroundImage = "url('./images/" + arrImagesUrl[i] + "')";
+    booletArr[i].classList.add('boolet-active');
 }
 
 /*    Завдання важке для розуміння, але дуже легке в реалізації. Тут треба буде погуглити

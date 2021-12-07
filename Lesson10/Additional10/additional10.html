@@ -7,7 +7,12 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Additional 10</title>
     <style>
-        button{font-size: 20px}
+        form{
+            margin: 50px 0;
+        }
+        button{
+            font-size: 20px
+        }
         .container {
             position: relative;
         }
@@ -94,7 +99,24 @@
             background-repeat: no-repeat;
             background-size: 40px;
             background-position: center;
-
+        }
+        .boolets{
+            position: absolute;
+            display: flex;
+            column-gap: 10px;
+            justify-content: center;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        .boolet{
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            background-color: grey;
+        }
+        .boolet-active{
+            background-color: black;
         }
     </style>
 
@@ -113,6 +135,8 @@
     </form>
     <div class="carousel">
         <div class="img-block"></div>
+        <div class="boolets">
+        </div>
         <div class="arrows">
             <div class="arrow arrow-left"></div>
             <div class="arrow arrow-right"></div>

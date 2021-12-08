@@ -17,6 +17,12 @@ let btn2 = document.getElementById('btn2');
 // let formId2 = document.getElementById('f3');
 let form2 = document.forms[2];
 console.log(form2);
+/*Если кнопка в форме то делаем
+form2.onsubmit = function(e){
+e.preventDefault();
+...
+тот же код
+ */
 btn2.onclick = () => {
     let trNumber = form2.number1.value;
     let tdNumber = form2.number2.value;
@@ -66,13 +72,24 @@ btn3.onclick = () =>{
     Перевірку робити при натисканні на кнопку*/
 let form4 = forms[4];
 let btn4 = document.getElementById('btn4');
+// btn4.onclick = () =>{
+//     let stringWords = form4.input4.value;
+//     let arrValues = stringWords.trim().split(" ");
+//     let lowArrValues = arrValues.map(value => value.toLowerCase());
+//     lowArrValues.forEach(value => {
+//         if(lowArrBadWords.find(item =>item === value)){
+//             alert("Don't write bad words");
+//         }
+//     })
+// }
+//або
 btn4.onclick = () =>{
+    let lowArrBadWords = arrBadWords.map(value => value.toLowerCase());
     let stringWords = form4.input4.value;
-    let arrValues = stringWords.trim().split(" ");
-    let lowArrValues = arrValues.map(value => value.toLowerCase());
-    lowArrValues.forEach(value => {
-        if(lowArrBadWords.find(item =>item === value)){
+    let lowStringWords = stringWords.toLowerCase();
+    for(const badWord of  lowArrBadWords){
+        if (lowStringWords.includes(badWord)){//строка содержит элемент массива
             alert("Don't write bad words");
         }
-    })
+    }
 }

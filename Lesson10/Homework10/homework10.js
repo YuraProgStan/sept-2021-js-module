@@ -8,10 +8,16 @@ let btn = document.createElement('button');
 btn.innerText = 'Click me';
 document.body.append(div, btn1);*/
 let btn1 = document.getElementsByClassName('btn1')[0];
-
+let flag = true;
 btn1.onclick = (() => {
     let id = document.getElementById('text');
+    if(flag){
     id.style.display = 'none';
+    }
+    else {
+        id.style.display = 'block';
+    }
+    flag =!flag;
 });
 /*let hr = document.createElement('hr');
 document.body.append(hr);*/
@@ -46,7 +52,7 @@ document.body.appendChild(form);*/
 let form1 = document.forms[0];
 form1.onsubmit = function (e) {
     e.preventDefault();
-    if (this.age.value < 18) {
+    if (+this.age.value < 18) {  //работает и без +, хотя приходит string
         this.username.value = 'Вам не дозволено дивитись цю сторінку';
         alert('Вам не дозволено дивитись цю сторінку');
     }
@@ -58,7 +64,11 @@ console.log(this.value);
 let clickElement = document.getElementsByClassName('click-element')[0];
 let hideMenu= document.getElementsByClassName('hide-menu')[0];
 clickElement.onclick = () =>{
-    hideMenu.classList.toggle('toggle');
+   /* for (const element of hideMenu.children) {
+        element.classList.toggle('hide');
+    }*/
+   hideMenu.classList.toggle('toggle');
+
 }
 
 // - Создать список комментариев , пример объекта коментария - {title : 'lorem', body:'lorem ipsum dolo sit ameti'}.

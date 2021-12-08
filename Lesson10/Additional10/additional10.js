@@ -144,6 +144,7 @@ booletActive.classList.add('boolet-active');
 let booletArr =  document.getElementsByClassName('boolet');
 
 imageBlock.style.backgroundImage = "url('./images/" + arrImagesUrl[0] + "')";
+// imageBlock.style.transition = "3s"
 let i = 0;
 arrowRight.addEventListener('click', funcNext);
 

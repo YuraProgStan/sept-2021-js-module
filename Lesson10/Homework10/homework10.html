@@ -23,9 +23,19 @@
             position: absolute;
             display: flex;
             flex-direction: column;
-            padding: 10px;
-            top: -500px;
+            top: 30px;
+            height: 84px; /*нужна высота, чтобы работал transition*/
         }
+        .hide-menu li{
+        padding: 10px;
+        }
+ /*       .hide-menu li{
+            height: 64px;
+            transition: 1s;
+        }
+        .hide-menu li.hide{
+            height: 0;
+        }*/
         .menu li {
             padding: 10px;
             background: darkred;
@@ -44,16 +54,15 @@
             background-size: 15px;
         }
         .toggle {
-            top: 24px;
+            height: 0;
+            overflow: hidden;
+            transition: .5s;
+
         }
-        .toggle-comments{
-            display: none;
-        }
+
         .comment{
             display: flex;
             flex-direction: column;
-            row-gap: 10px;
-            border: 1px solid green;
             width: 25%;
             font-size: 20px;
         }
@@ -61,13 +70,18 @@
             font-weight: bold;
             font-size: 25px;
         }
-        p{
-            margin: 0;
+        .comment div:nth-child(3){
+            height: 100px;
+            transition: .5s;
+            padding: 10px;
+        }
+        .comment div:nth-child(3).toggle-comments{
+            height: 0;
+            overflow: hidden;
         }
         .comment button{
             border-radius: 10px;
         }
-
     </style>
 </head>
 <body>

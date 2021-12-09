@@ -102,6 +102,35 @@ let foo = function (element) {
     btnBackward.classList.add('backward');
     btnBackward.innerText = 'Backward';
     document.body.append(btnForward, btnBackward);
+
+    function domStructure(element) {
+        let divContainer = document.createElement('div');
+        divContainer.classList.add('main');
+        divContainer.innerText = 1;
+        document.body.appendChild(divContainer);
+        let i = 1;
+        if (element.children.length) {
+            function recDom(elem, divFunc, k) {
+                for (const keyElement of elem.children) {
+                    let div = document.createElement('div');
+                    let text = divFunc.textContent;
+                    let childtext = `${divFunc.innerText}.${k}`;
+                    div.innerText = childtext;
+                    divFunc.appendChild(div);
+                    if (keyElement.children.length) {
+                      recDom(keyElement, div,i);
+                        console.log('Super');
+                    }
+                    else {
+
+                    }
+                }
+            }
+            recDom(element,divContainer,i );
+        }
+    }
+
+    domStructure(element);
     const recGetChildren = (element => {
         btnForward.addEventListener('click', func);
 
@@ -141,7 +170,7 @@ for (let j = 0; j <= lenghth; j++) {
 }
 let booletActive = document.getElementsByClassName('boolet')[0];
 booletActive.classList.add('boolet-active');
-let booletArr =  document.getElementsByClassName('boolet');
+let booletArr = document.getElementsByClassName('boolet');
 
 imageBlock.style.backgroundImage = "url('./images/" + arrImagesUrl[0] + "')";
 // imageBlock.style.transition = "3s"
@@ -172,7 +201,7 @@ function funcPrev() {
 
 let updatePostion = function (i) {
     for (const element of booletArr) {
-        if (element.classList.contains('boolet-active')){
+        if (element.classList.contains('boolet-active')) {
             element.classList.remove('boolet-active');
         }
     }
@@ -185,6 +214,7 @@ let updatePostion = function (i) {
 let span = document.createElement('span');
 span.style.fontStyle = 'italic';
 span.style.fontWeight = '700';
+
 function selection(elem) {
     if (window.getSelection) {
         let sel = window.getSelection();
@@ -196,8 +226,9 @@ function selection(elem) {
         }
     }
 }
+
 let buttonSelect = document.getElementById('select');
-buttonSelect.addEventListener('click', function (){
+buttonSelect.addEventListener('click', function () {
     selection(span);
 })
 /*

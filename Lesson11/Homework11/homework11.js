@@ -1,7 +1,7 @@
 /*-створити форму з інпутами для name та age.
     При відправці форми записати об'єкт в localstorage*/
 let f1 = document.forms.f1
-f1.onsubmit = function (e){
+f1.onsubmit = function (e) {
     e.preventDefault();
     let name = this.name.value;
     let age = this.age.value;
@@ -15,7 +15,7 @@ f1.onsubmit = function (e){
 -створити форму з інпутами для model,type та volume автівки.
     при відпарвці форми об'єкти зберігаються в масиві в локальному сховищі.*/
 let f2 = document.forms.f2
-f2.onsubmit = function (e){
+f2.onsubmit = function (e) {
     e.preventDefault();
     let model = this.model.value;
     let type = this.type.value;
@@ -23,7 +23,16 @@ f2.onsubmit = function (e){
     let objModel = {model: model};
     let objType = {type: type};
     let objVolume = {volume: volume};
-    let arr = [objModel, objType, objVolume];
-    let stringArr = JSON.stringify(arr);
-    localStorage.setItem('arr', stringArr);
+    let car = [objModel, objType, objVolume];
+    let stringArr = JSON.stringify(car);
+    let cars = localStorage.getItem('cars');
+    if (!cars) {
+        cars = [];
+        cars.push(car);
+        localStorage.setItem('cars', stringArr);
+    } else {
+        let purseCars = JSON.parse(cars);
+        purseCars.push(car);
+        localStorage.setItem('cars', JSON.stringify(purseCars));
+    }
 }

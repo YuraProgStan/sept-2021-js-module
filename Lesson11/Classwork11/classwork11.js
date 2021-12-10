@@ -44,7 +44,6 @@ for (const user of users) {
             localStorage.setItem('favorites', firstStringFavorites);
         } else {
             let localFavorites = localStorage.getItem('favorites');
-            console.log('localFavorites' + localFavorites + 'user' + JSON.stringify(user));
             if (!localFavorites.includes(JSON.stringify(user))) {
                 let arrLocalFavorites = JSON.parse(localFavorites);
                 arrLocalFavorites.push(user);

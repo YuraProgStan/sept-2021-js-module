@@ -102,36 +102,60 @@ let foo = function (element) {
     btnBackward.classList.add('backward');
     btnBackward.innerText = 'Backward';
     document.body.append(btnForward, btnBackward);
+    let divContainer = document.createElement('div');
+    divContainer.classList.add('main');
+    divContainer.innerText = '1';
+    document.body.appendChild(divContainer);
 
-    function domStructure(element) {
-        let divContainer = document.createElement('div');
-        divContainer.classList.add('main');
-        divContainer.innerText = 1;
-        document.body.appendChild(divContainer);
-        let i = 1;
-        if (element.children.length) {
-            function recDom(elem, divFunc, k) {
-                for (const keyElement of elem.children) {
-                    let div = document.createElement('div');
-                    let text = divFunc.textContent;
-                    let childtext = `${divFunc.innerText}.${k}`;
-                    div.innerText = childtext;
-                    divFunc.appendChild(div);
-                    if (keyElement.children.length) {
-                      recDom(keyElement, div,i);
-                        console.log('Super');
-                    }
-                    else {
+    function domStructure(el, divFunc, path, arr = [[0, '1']]) {
+        function incr(str) {
+            if (str === '1') {
+                return str + '.' + '1';
+            } else {
+                console.log('str', str);
+                let increment = +str.slice(-1) + 1;
+                return (str.slice(0, -1) + increment);
+            }
+        }
 
-                    }
+        function foo(arrF, pathF) {
+            let arrRev = arrF.slice().reverse();
+            console.log(arrRev, pathF);
+            for (let el of arrRev) {
+                if (el.includes(pathF)) {
+                    console.log('here');
+                    return el[1];
                 }
             }
-            recDom(element,divContainer,i );
         }
+
+        if (el == null) {
+            console.log('Super');
+            path--;
+            return;
+        }
+        let div = document.createElement('div');
+        console.log('path', path);
+        console.log('arr', arr);
+        let prev;
+        if (foo(arr, path)) {
+            prev = foo(arr, path);
+            console.log('prev', prev);
+        } else {
+            console.log('fuck', el);
+            prev = arr[arr.length - 1][1];
+        }
+        let value = incr(prev);
+        arr.push([path, value]);
+        div.innerText = value;
+        divFunc.appendChild(div);
+        console.log('first el', el);
+        domStructure(el.firstElementChild, div, path++, arr);
+        domStructure(el.nextElementSibling, div.parentElement, path, arr);
     }
 
-    domStructure(element);
-    const recGetChildren = (element => {
+    domStructure(element.children[0], divContainer, '1');
+    /*const recGetChildren = (element => {
         btnForward.addEventListener('click', func);
 
         function func() {
@@ -151,7 +175,7 @@ let foo = function (element) {
         }
 
     })
-    recGetChildren(element);
+    recGetChildren(element);*/
 }
 let element = document.getElementsByClassName('container')[0];
 foo(element);

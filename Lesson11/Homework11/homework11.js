@@ -9,8 +9,6 @@ f1.onsubmit = function (e) {
     let stringObj = JSON.stringify(obj);
     localStorage.setItem('k1', stringObj);
 }
-
-
 /*
 -створити форму з інпутами для model,type та volume автівки.
     при відпарвці форми об'єкти зберігаються в масиві в локальному сховищі.*/
@@ -20,17 +18,16 @@ f2.onsubmit = function (e) {
     let model = this.model.value;
     let type = this.type.value;
     let volume = this.volume.value;
-    let obj ={model: model, type: type, volume: volume};
-    let car = [obj];
-    let stringArr = JSON.stringify(car);
+    let car = {model: model, type: type, volume: volume};
     let cars = localStorage.getItem('cars');
     if (!cars) {
-        cars = [];
+        let cars = [];
         cars.push(car);
-        localStorage.setItem('cars', stringArr);
+        localStorage.setItem('cars', JSON.stringify(cars));
     } else {
-        let purseCars = JSON.parse(cars);
-        purseCars.push(car);
-        localStorage.setItem('cars', JSON.stringify(purseCars));
+        let cars = localStorage.getItem('cars');
+        cars = JSON.parse(cars);
+        cars.push(car);
+        localStorage.setItem('cars', JSON.stringify(cars));
     }
 }

@@ -106,76 +106,154 @@ let foo = function (element) {
     divContainer.classList.add('main');
     divContainer.innerText = '1';
     document.body.appendChild(divContainer);
+    let path;
 
     function domStructure(el, divFunc, path, arr = [[0, '1']]) {
+
+        function newIncr() {
+            let str = arr[arr.length - 1][1];
+            return str + '.' + 1;
+        }
+
         function incr(str) {
-            if (str === '1') {
-                return str + '.' + '1';
-            } else {
-                console.log('str', str);
-                let increment = +str.slice(-1) + 1;
-                return (str.slice(0, -1) + increment);
-            }
+            let increment = +str.slice(-1) + 1;
+            return (str.slice(0, -1) + increment);
         }
 
         function foo(arrF, pathF) {
             let arrRev = arrF.slice().reverse();
-            console.log(arrRev, pathF);
+
             for (let el of arrRev) {
                 if (el.includes(pathF)) {
-                    console.log('here');
                     return el[1];
+                }
+            }
+
+        }
+
+        let div = document.createElement('div');
+        let prev;
+        let value;
+        if (path <= arr.slice().reverse()[0][0] && foo(arr, path)) {
+            prev = foo(arr, path);
+            value = incr(prev);
+        } else {
+            value = newIncr();
+        }
+        arr.push([path, value]);
+        div.innerText = value;
+        divFunc.appendChild(div);
+        if (el.firstElementChild) {
+            path++;
+            domStructure(el.firstElementChild, div, path, arr);
+        } else if (el.nextElementSibling) {
+            domStructure(el.nextElementSibling, div.parentElement, path, arr);
+        } else if (el.parentElement.nextElementSibling) {
+            path--;
+            domStructure(el.parentElement.nextElementSibling, div.parentElement.parentElement, path, arr);
+        }
+    }
+
+    domStructure(element.children[0], divContainer, 1);
+
+    function recGetChildren() {
+        let i = 0;
+        btnForward.addEventListener('click', funcNextRec);
+        btnBackward.addEventListener('click', funcPrevRec);
+        document.getElementsByClassName('active-rec')[0].classList.remove('active-rec');
+
+        function funcNextRec() {
+            let length = document.getElementsByClassName('main')[0].getElementsByTagName('div').length - 1;
+            console.log('nextStep2');
+            updatePostionRec(i);
+            i++;
+        }
+
+        function updatePostionRec() {
+            if (i === 0) {
+                console.log('nextStep3');
+                  document.getElementsByClassName('main')[0].firstElementChild.classList.add('active-rec');
+
+            } else {
+                let prevActive = document.getElementsByClassName('active-rec')[0];
+                if (prevActive.firstElementChild) {
+                    let nextPrev = prevActive.firstElementChild;
+                    nextPrev.classList.add('active-rec');
+                    prevActive.classList.remove('active-rec');
+                } else if (prevActive.nextElementSibling) {
+                    let nextPrev = prevActive.nextElementSibling;
+                    nextPrev.classList.add('active-rec');
+                    prevActive.classList.remove('active-rec');
+                } else if (prevActive.parentElement.nextElementSibling) {
+                    let nextPrev = prevActive.parentElement.nextElementSibling;
+                    nextPrev.classList.add('active-rec');
+                    prevActive.classList.remove('active-rec');
                 }
             }
         }
 
-        if (el == null) {
-            console.log('Super');
-            path--;
-            return;
-        }
-        let div = document.createElement('div');
-        console.log('path', path);
-        console.log('arr', arr);
-        let prev;
-        if (foo(arr, path)) {
-            prev = foo(arr, path);
-            console.log('prev', prev);
-        } else {
-            console.log('fuck', el);
-            prev = arr[arr.length - 1][1];
-        }
-        let value = incr(prev);
-        arr.push([path, value]);
-        div.innerText = value;
-        divFunc.appendChild(div);
-        console.log('first el', el);
-        domStructure(el.firstElementChild, div, path++, arr);
-        domStructure(el.nextElementSibling, div.parentElement, path, arr);
-    }
+        function funcPrevRec() {
+            updatePostionPrevRec(i);
+            if (i === 0) {
 
-    domStructure(element.children[0], divContainer, '1');
-    /*const recGetChildren = (element => {
-        btnForward.addEventListener('click', func);
-
-        function func() {
-            btnForward.removeEventListener('click', func);
-            if (element.children.length > 0) {
-                console.log('test1', element.children[0]);
-                recGetChildren(element.children[0]);
-            } else if (element.nextElementSibling) {
-                console.log('test2', element.nextElementSibling);
-                recGetChildren(element.nextElementSibling);
-            } else if (!element.parentElement.classList.contains('container') && element.parentElement.nextElementSibling) {
-                console.log('test3', element.parentElement.nextElementSibling);
-                recGetChildren(element.parentElement.nextElementSibling);
-            } else if (element.parentElement.classList.contains('container')) {
-                console.log("thats all");
+            } else {
+                i--;
             }
         }
 
-    })
-    recGetChildren(element);*/
+        function updatePostionPrevRec() {
+
+            let prevActive = document.getElementsByClassName('active-rec')[0];
+            if (prevActive === document.getElementsByClassName('main')[0].firstElementChild) {
+                let find = document.getElementsByClassName('main')[0].lastElementChild;
+                if(find.firstElementChild) {
+                    let nextPrev = find.lastElementChild;
+                    nextPrev.classList.add('active-rec');
+                    prevActive.classList.remove('active-rec');
+                }
+                else {
+                    let nextPrev = document.getElementsByClassName('main')[0].lastElementChild;
+                    nextPrev.classList.add('active-rec');
+                    prevActive.classList.remove('active-rec');
+                }
+            }
+           else if (prevActive.previousElementSibling) {
+                let currentFindElem = prevActive.previousElementSibling;
+                if (!currentFindElem.firstElementChild) {
+                    let nextPrev = prevActive.previousElementSibling;
+                    nextPrev.classList.add('active-rec');
+                    prevActive.classList.remove('active-rec');
+                } else {
+                    let nextPrev = currentFindElem.lastElementChild;
+                    nextPrev.classList.add('active-rec');
+                    prevActive.classList.remove('active-rec');
+                }
+            } else if (prevActive.parentElement) {
+                let nextPrev = prevActive.parentElement;
+                nextPrev.classList.add('active-rec');
+                prevActive.classList.remove('active-rec');
+            }
+        }
+
+        // function func() {
+        //     btnForward.removeEventListener('click', func);
+        //     if (element.children.length > 0) {
+        //         console.log('test1', element.children[0]);
+        //         recGetChildren(element.children[0]);
+        //     } else if (element.nextElementSibling) {
+        //         console.log('test2', element.nextElementSibling);
+        //         recGetChildren(element.nextElementSibling);
+        //     } else if (!element.parentElement.classList.contains('container') && element.parentElement.nextElementSibling) {
+        //         console.log('test3', element.parentElement.nextElementSibling);
+        //         recGetChildren(element.parentElement.nextElementSibling);
+        //     } else if (element.parentElement.classList.contains('container')) {
+        //         console.log("thats all");
+        //     }
+        // }
+
+    }
+
+    recGetChildren();
 }
 let element = document.getElementsByClassName('container')[0];
 foo(element);

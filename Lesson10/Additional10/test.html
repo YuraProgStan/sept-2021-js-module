@@ -8,30 +8,37 @@
 
 </body>
 <script>
-    let path = 2;
-    let arr = [1, [1, '1.1'], [1, '1.2'], [2, '1.2.1'], [2, '1.2.2']];
-    function decr(str) {
-        console.log('str', str);
-        let increment = +str.slice(-1) - 1;
-        return (str.slice(0, -1) + increment);
+    let path = 1;
+    let arr = [[0, '1']];
+
+    function newIncr() {
+        let str = arr[arr.length - 1][1];
+        return str + '.' + 1;
     }
     function incr(str) {
         let increment = +str.slice(-1) + 1;
         return (str.slice(0, -1) + increment);
     }
+
     function foo(arrF, pathF) {
         let arrRev = arrF.slice().reverse();
         for (let el of arrRev) {
             if (el.includes(pathF)) {
-                return el[1] ;
+                return el[1];
             }
         }
     }
-    let prev = foo(arr, path);
-    let value = incr(prev);
-    arr.push([path,value]);
 
-console.log(value, arr);
+    let prev;
+    let value;
+    if (foo(arr, path)) {
+        prev = foo(arr, path);
+        value = incr(prev);
+    } else {
+        value = newIncr();
+    }
+    arr.push([path, value]);
+
 
     // return (Number(item[1]) + 1 / 10 ** path).toFixed(path);
     //let previous =JSON.stringify(arr).lastIndexOf(match[match.length-1]);

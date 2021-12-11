@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Classwork12</title>
+    <style>
+        * {
+            font-size: 18px;
+        }
+
+        .container {
+            display: grid;
+            grid-template-columns: repeat(5, minmax(50px, 1fr));
+            grid-template-rows: auto;
+            gap: 10px;
+        }
+
+        .post{
+            display: flex;
+            flex-direction: column;
+            row-gap: 10px;
+            border: 1px solid darkgrey;
+            padding: 10px;
+        }
+
+        .container > div > div:nth-child(3) {
+            font-size: 24px;
+            font-weight: 700;
+        }
+    </style>
+</head>
+<body>
+<script src="classwork12.js"></script>
+</body>
+</html>

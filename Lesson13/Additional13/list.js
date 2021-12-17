@@ -43,6 +43,6 @@ document.getElementsByClassName('container')[0].append(divProducts, divBtnAll);
 btnAll.addEventListener('click', function () {
     localStorage.removeItem('Products');
     let container = document.getElementsByClassName('container');
-    container.innerHTML = "";
+    container.innerText = "";
     location.reload();
 })

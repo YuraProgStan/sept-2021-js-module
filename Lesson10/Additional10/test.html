@@ -3,21 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <title>Test</title>
+    <style>
+        div {
+            border: 1px solid black;
+            padding: 10px;
+        }
+    </style>
 </head>
 <body>
-
+<form name="f1">
+    <input type="text" name="person"/>
+    <button class="btn">Send</button>
+</form>
+<button class="start-event">Show Alert</button>
 </body>
 <script>
     let path = 1;
-    let arr = [[0, '1']];
+    let arr = [[0, '1'], [1, '1.10']];
 
     function newIncr() {
         let str = arr[arr.length - 1][1];
         return str + '.' + 1;
     }
+
+    const f = x => ((x.toString().includes('.')) ? (x.toString().split('.').pop().length) : (0)); //возвращает количество знаков после точки
     function incr(str) {
-        let increment = +str.slice(-1) + 1;
-        return (str.slice(0, -1) + increment);
+        let increment = +str.slice(-(f(+str))) + 1;
+        return (str.slice(0, -(f(+str))) + increment);
     }
 
     function foo(arrF, pathF) {
@@ -29,22 +41,415 @@
         }
     }
 
+    let div = document.createElement('div');
     let prev;
     let value;
-    if (foo(arr, path)) {
+    if (path <= arr.slice().reverse()[0][0] && foo(arr, path)) {
         prev = foo(arr, path);
         value = incr(prev);
     } else {
         value = newIncr();
     }
     arr.push([path, value]);
+    div.innerText = value;
+    console.log(arr);
+    // divFunc.appendChild(div);
+    /*    if (el.firstElementChild) {
+            path++;
+            domStructure(el.firstElementChild, div, path, arr);
+        } else if (el.nextElementSibling) {
+            domStructure(el.nextElementSibling, div.parentElement, path, arr);
+        } else if (el.parentElement.nextElementSibling) {
+            path--;
+            domStructure(el.parentElement.nextElementSibling, div.parentElement.parentElement, path, arr);
+        }*/
+    let divPar = document.createElement('div');
+    let array = [1, 2, [2, 4, 5, [6]], 7, [9], 8];
 
+    function recArr(arr, divParent) {
+        for (const arrElement of arr) {
+            let divChildren = document.createElement('div');
+            if (Array.isArray(arrElement)) {
+                recArr(arrElement, divChildren);
+            } else {
+                divChildren.innerText = arrElement;
+            }
+            divParent.appendChild(divChildren);
+        }
+    }
 
-    // return (Number(item[1]) + 1 / 10 ** path).toFixed(path);
-    //let previous =JSON.stringify(arr).lastIndexOf(match[match.length-1]);
+    recArr(array, divPar);
+    document.body.appendChild(divPar);
+    let arrObjArr = [{name: "Vasya", surname: "Pupkin", special: [1, 2, 3]}, 3, {
+        address: {
+            street: "Some street",
+            city: "Kiev"
+        }
+    }, [5, [9]], 8];
+    let divP = document.createElement('div');
 
-    // let str='1.3';
-    // let value = (Number(str) + 1/10**path).toFixed(path);
+    function recArrObj(arr, divParent) {
+        if (Array.isArray(arr)) {
+            for (const arrElement of arr) {
+                let divChildren = document.createElement('div');
+                if (Array.isArray(arrElement) || typeof arrElement === "object") {
+                    recArrObj(arrElement, divChildren);
+                } else {
+                    divChildren.innerText = arrElement;
+                }
+                divParent.appendChild(divChildren);
+            }
+        } else {
+            for (const key in arr) {
+                let divChildren = document.createElement('div');
+                if (typeof arr[key] === 'object' || Array.isArray(arr[key])) {
+                    divChildren.innerText = `${key}`;
+                    recArrObj(arr[key], divChildren);
+                } else {
+                    divChildren.innerText = `${key}: ${arr[key]}`;
+                }
+                divParent.appendChild(divChildren);
+            }
+        }
+    }
 
+    recArrObj(arrObjArr, divP);
+    document.body.appendChild(divP);
+    //Math.floor(Math.random() * (max - min + 1)) + min
+    let randomMinMax = Math.floor(Math.random() * (10 - 2 + 1)) + 2; //random от 2 до 10 включая 2 и 10
+    console.log(randomMinMax);
+    //Math.floor(Math.random() * max + 1)
+    let randomMax = Math.floor(Math.random() * 10 + 1);//random от 1 до 10 включая 1 и 10
+    console.log(randomMax);
+    //html
+    let f1 = document.forms.f1; //f1 = document.forms[0];
+    f1.onsubmit = function (e) {
+        e.preventDefault();
+        let value = this.person.value;
+        console.log(value);
+    }
+    // <button className="start-event">Show Alert</button>
+    let btnAlert = document.getElementsByClassName('start-event')[0];
+    btnAlert.addEventListener("click", showAlert);
+    btnAlert.addEventListener("click", function (event) {
+        console.log(event.clientX, event.clientY)
+    });
+
+    // btnAlert.removeEventListener("click", showAlert); //удаляет обработчик showAlert
+    function showAlert(event) {
+        alert(event.currentTarget.tagName); //target //e.target -это то, что запускает диспетчер событий, а e.currentTarget (=this) -это то, на что вы назначили своего слушателя
+    }
+
+    /*stopPropagation () например: /onclick="event.stopPropagation()"/препятствует продвижению текущего события дальше, но на текущем элементе все обработчики отработают.
+    Для того, чтобы полностью остановить обработку, современные браузеры поддерживают метод event.stopImmediatePropagation(). Он не только предотвращает всплытие, но и останавливает обработку событий на текущем элементе.*/
+    //Глубокая копия объекта
+    //  Другая запись:
+    /*
+            let stateCopy = {
+                ...state,
+                messages: [...state.messages]
+
+            };*/
+    //  Тоже самое, что
+    /* let stateCopy = {...state};
+     stateCopy.messages = [...state.messages];*/
+
+    let user = {name: 'kokos', age: 123};
+
+    function log({name, age}) {
+        console.log(name, age)
+    }
+
+    log(user);
+    //Конвертация obj в arr
+    const obj = {
+        name: 'Vladilen',
+        age: 26,
+        job: 'Fullstack'
+    }
+    for (let key of Object.keys(obj)) { //Метод Object.keys() возвращает массив ключей
+        console.log(key);
+    }
+    for (let value of Object.values(obj)) { //Метод Object.values() возвращает массив значений
+        console.log(value);
+    }
+    const entries = [
+        ['name', 'Vladilen'],
+        ['age', 26],
+        ['job', 'Fullstack']
+    ]
+    console.log(Object.entries(obj)); //делает array с obj
+    console.log(Object.fromEntries(entries)); // делает obj с array
+
+    //объект Map
+    let map = new Map(entries);
+    console.log(map);
+    for (let [key, value] of map) {
+        console.log(key, value);
+    }
+    for (let value of map.values()) {
+        console.log(value);
+    }
+    for (let key of map.keys()) {
+        console.log(key);
+    }
+    map.forEach((val, key, m) => {
+        console.log(key, val);
+    })
+    const arr1 = [...map]; //arr1 = Array.from(map);
+    const mapObj = Object.fromEntries(map.entries());
+    console.log(mapObj);
+
+    //Примеры использования Map: нужно записать время, когда он посещал сайты или просматривал статью
+    const users = [
+        {name: 'Elena'},
+        {name: 'Alex'},
+        {name: 'Irina'}
+    ]
+    const visits = new Map();
+    visits
+        .set(users[0], new Date())
+        .set(users[1], new Date(new Date().getTime() + 1000 * 60))
+        .set(users[2], new Date(new Date().getTime() + 5000 * 60));
+
+    function lastVisit(user) {
+        return visits.get(user);
+    }
+
+    console.log(lastVisit(users[2]));
+    //Примеры использования Set (хранит и добавляет только уникальные значения):
+    let set = new Set();
+    set.add(1).add(7).add(7).add(9);
+    console.log(set);
+
+    function unique(arr) {
+        return Array.from(new Set(arr)); //или [...new Set(arr)]
+    }
+
+    //WeakMap - ключами могут быть только объекты
+    let obj1 = {name: 'weakmap'};
+    const arr2 = [obj1];
+    obj1 = null;
+    console.log(obj1);
+    console.log(arr2);
+    let obj2 = {name: 'weakmap'};
+    const map1 = new WeakMap([
+        [obj2, 'obj1.data']
+    ]);
+    //get, set, delete, has
+    obj2 = null;
+    console.log(map1.get(obj2));
+    //WeakMap на практике - пробиваем пользователей по кеш. В случае, если в кеш есть пользователи, то возвращаем значение, если нет, то добавляем
+    //в кеш пользователя, его значение и потом возвращаем
+    const cache = new WeakMap();
+
+    function cacheUser(user) {
+        if (!cache.has(user)) {
+            cache.set(user, Date.now());
+        }
+        return cache.get(user);
+    }
+
+    let lena = {name: 'Elena'};
+    let alex = {name: 'Alex'};
+    cacheUser(lena);
+    cacheUser(alex);
+    lena = null;
+    console.log(cache.has(lena));
+    //здесь получаем falls, автоматически из WeakMap был удален данный ключ и память была очищена,т.к. нет ссылки на данный объект
+    //в кеше не хранится теперь ничего лишнего, наше приложение может работать быстрее
+    console.log(cache.has(alex));
+
+    //WeakSet - значения только объекты
+    const users1 = [
+        {name: 'Elena'},
+        {name: 'Alex'},
+        {name: 'Irina'}
+    ];
+    const visits1 = new WeakSet();
+    visits1.add(users1[0]).add(users1[1]);
+
+    users1.splice(1, 1);
+    //arr.splice(index[, deleteCount, elem1, ..., elemN])
+    //Он начинает с позиции index, удаляет deleteCount элементов и
+    // вставляет elem1, ..., elemN на их место. Возвращает массив из удалённых элементов.
+    //допускается использование отрицательного индекса. Он позволяет начать отсчёт элементов с конца, т.е. например arr.splice(-1,0,3,4)
+    console.log(visits1.has(users1[0]));
+    console.log(visits1.has(users1[1]));  //отсутствует пользователь, дает false
+    //Приватные методы в классах
+
+    class Person {
+        #year = 1990;
+        birthYear = 1993;
+
+        get #age() {
+            return this.#getYear() - this.birthYear;
+        }
+
+        logAge() {
+            console.log(this.#age);
+        }
+
+        #getYear() {
+            return new Date().getFullYear();
+        }
+    }
+
+    const person = new Person();
+    //console.log(person.age); //не работает - нет доступа к приватному методу
+    // console.log(person.#getYear); //не работает - нет доступа к приватному методу
+   // console.log((person.#year)); // не работает - нет доступа к приватному полю
+   console.log(person.birthYear);
+    person.logAge();
+    //nulable js
+    const values = {
+        undefined: undefined,
+        null: null,
+        false: false,
+        zero: 0,
+        empty: ''
+    }
+    console.log(values.undefined || 'default undefined');
+    console.log(values.undefined ?? 'default undefined');
+
+    console.log(values.null || 'default null');
+    console.log(values.null ?? 'default null');
+
+    console.log(values.false || 'default false');
+    console.log(values.false ?? 'default false');
+
+    console.log(values.zero || 'default zero');
+    console.log(values.zero ?? 'default zero');
+
+    console.log(values.empty || 'default empty');
+    console.log(values.empty ?? 'default empty');
+    //optional operator
+    const bill1 = {
+        bank: {
+            name: "My Bank",
+            amount: {
+                value: 1000,
+                currency: 'UAH'
+            }
+        }
+    }
+    const bill2 = {
+        bank: {}
+    }
+    function getBillValueFrom(bill){
+        // return (bill && bill.bank && bill.bank.amount && bill.bank.amount.value)
+        // ? bill.bank.amount.value
+        //     : undefined;
+        return bill?.bank?.amount?.value;
+    }
+    console.log(getBillValueFrom(bill1));
+    console.log(getBillValueFrom(bill2));
+
+    //logical assigments
+    let a = 1;
+    let b = 42;
+    a ??= b;
+    console.log(a); //дает 1, оператор ??= - короткая запись а ?? (a = b) - обозначает -(какое-то expr, которое не является ни нулевым, ни неопределенным) ?? expr
+    if (a) {
+        a = b;
+    }
+    //или
+    a && (a = b);
+    //или
+    a &&= b; //для || есть a ||=b
+
+    function config(options) {
+        options.duration ??= 100;
+        options.speed ??= 25;
+        return options;
+    }
+
+    config({duration: 125}); // { duration: 125, speed: 25 }
+    config({}); // { duration: 100, speed: 25 }
+
+    //WeakRef //Примеры
+    const listenersRegistry = new FinalizationRegistry(
+        ({target, wrapper, type}) => {
+            target.removeEventListener(type, wrapper);
+        }
+    )
+
+    function addWeakListener(target, type, listener) {
+        const wr = new WeakRef(listener);
+        const wrapper = (event) => wr.deref()?.(event);
+        listenersRegistry.register(listener, {target, wrapper, type});
+        target.addEventListener(type, wrapper);
+    }
+
+    addWeakListener(document, 'click', (event) => {
+        console.log(event);
+    })
+    /*Мы можем применить Map, значения которой являются объектами WeakRef, которые указывают на ArrayBuffer.
+    Таким образом, мы избегаем удерживания этих объектов ArrayBuffer в памяти дольше, чем они были бы в противном случае:
+    это способ найти объект изображения, если он все еще существует, но если он будет собран сборщиком мусора, мы его регенерируем.
+    Таким образом, в некоторых ситуациях используется меньше памяти.*/
+    // This technique is incomplete; see below.
+    // https://github.com/tc39/proposal-weakrefs
+    function makeWeakCached(f) {
+        const cache = new Map();
+        return key => {
+            const ref = cache.get(key);
+            if (ref) {
+                const cached = ref.deref();
+                if (cached !== undefined) return cached;
+            }
+
+            const fresh = f(key);
+            cache.set(key, new WeakRef(fresh));
+            return fresh;
+        };
+    }
+
+    // var getImageCached = makeWeakCached(getImage);
+
+    //async await раз способы записи
+    const emulate = (id, ms) => new Promise(resolve => {
+        setTimeout(() => resolve(id), ms);
+    })
+    const promises = [
+        emulate(1, 250),
+        emulate(2, 550),
+        emulate(3, 1500)
+    ];
+
+    async function old() {
+        for (const promise of await Promise.all(promises)) {
+            console.log('Old:', promise);
+        }
+    }
+ /*   Promise.all([p1,p2,p3]) //редко используетcя - вылетает reject на p2 и заканчивается выполнение Promise.all
+    Promise.allSettled([1,2]) //используется
+.then(res => {
+    console.log(res);
+})*/
+    old();
+
+    async function modern() {
+        for await (const promise of promises) {
+            console.log('Modern:', promise);
+        }
+    }
+
+    modern();
+
+    //Методы для работы со строками
+    console.log('face'.padStart(8, 'www.')); //String заданной длины с заполнением строкой, выполненное в начале, face приоритет, www. будет обрезать, если не хватит.
+    console.log('face'.padEnd(8, '!'));
+
+    //Методы для работы с массивами
+    //flat
+    const nested = ['a', 'b', ['c', 'd'], ['e', ['f', 'g']]];
+    console.log(nested.flat());
+    console.log(nested.flat().flat());
+    console.log(nested.flat(2)); // параметр глубины, через рекурсию работает
+    //flatMap
+    const techs = ['react redux', 'angular', 'vue', 'deno and node'];
+    console.log(techs.map(tech => tech.split(" ")).flat()); //эквивалентно нижней записи
+    console.log(techs.flatMap(tech => tech.split(" ")));
 </script>
 </html>

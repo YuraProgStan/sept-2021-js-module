@@ -18,16 +18,24 @@ f2.onsubmit = function (e) {
     let model = this.model.value;
     let type = this.type.value;
     let volume = this.volume.value;
-    let car = {model: model, type: type, volume: volume};
-    let cars = localStorage.getItem('cars');
-    if (!cars) {
-        let cars = [];
-        cars.push(car);
-        localStorage.setItem('cars', JSON.stringify(cars));
-    } else {
-        let cars = localStorage.getItem('cars');
-        cars = JSON.parse(cars);
-        cars.push(car);
-        localStorage.setItem('cars', JSON.stringify(cars));
-    }
+    let item = 'keyCar';
+    /*let car = {model: model, type: type, volume: volume};
+   let cars = localStorage.getItem(item);
+  if (!cars) {
+       let cars = [];
+       cars.push(car);
+       localStorage.setItem(item, JSON.stringify(cars));
+   } else {
+       let cars = localStorage.getItem(item);
+       cars = JSON.parse(cars);
+       cars.push(car);
+       localStorage.setItem(item, JSON.stringify(cars));
+   }*/
+    let saveCar = (modelCar, typeCar, volumeCar) => {
+        let newArr = JSON.parse(localStorage.getItem(item)) || [];
+
+        newArr.push({modelCar, typeCar, volumeCar})
+        localStorage.setItem(item, JSON.stringify(newArr));
+    };
+    saveCar(model, type, volume);
 }

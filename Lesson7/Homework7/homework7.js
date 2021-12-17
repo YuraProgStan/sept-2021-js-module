@@ -11,7 +11,7 @@ const numSum = (number) => {
 }
 console.log(numSum(234));
 const numSum1 = (number) => {
-    return number.toString().split('').reduce((sum, current) => +sum + +current);
+    return number.toString().split('').reduce((sum, current) => +sum + +current,0); //sum начальное значение 0
 }
 console.log(numSum1(234));
 

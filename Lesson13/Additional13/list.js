@@ -46,4 +46,3 @@ btnAll.addEventListener('click', function () {
     container.innerHTML = "";
     location.reload();
 })
-

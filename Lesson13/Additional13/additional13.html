@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Additional13</title>
+    <style>
+        *{
+            font-size: 18px;
+        }
+        form {
+            width: 500px;
+            display: flex;
+            flex-direction: column;
+            row-gap: 20px;
+            margin-bottom: 20px;
+        }
+
+    </style>
+</head>
+<body>
+<form action="/someaction" id="product" name="product">
+    <div>
+        <label for = "nameproduct">Name:</label>
+        <input type = "text" id="nameproduct"/>
+    </div>
+    <div>
+        <label for = "countproduct">Count:</label>
+        <input type="number" id = "countproduct"/>
+    </div>
+    <div>
+    <label for = "priceproduct">Price, $</label>
+    <input type="number" id = "priceproduct"/>
+    </div>
+    <div>
+        <label for = "urlimage">Enter url image</label>
+        <input type="text" id = "urlimage"/>
+    </div>
+
+   <div> <button type="submit">Submit</button></div>
+</form>
+<div id ="aDiv"></div>
+<script src="additional13.js"></script>
+</body>
+</html>

@@ -10,7 +10,6 @@
 На сторінці  list.html побудувати кнопку яка видаляє всі товари з корзини та локалстораджа.
     До кожного товару додати кнопку, при кліку на яку з лс видаляється конкретний обраний  товар*/
 let a = document.createElement('a');
-localStorage.clear();
 a.href = 'list.html';
 a.target= '_blank';
 a.innerText = 'Page product';

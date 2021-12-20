@@ -298,8 +298,8 @@
     const person = new Person();
     //console.log(person.age); //не работает - нет доступа к приватному методу
     // console.log(person.#getYear); //не работает - нет доступа к приватному методу
-   // console.log((person.#year)); // не работает - нет доступа к приватному полю
-   console.log(person.birthYear);
+    // console.log((person.#year)); // не работает - нет доступа к приватному полю
+    console.log(person.birthYear);
     person.logAge();
     //nulable js
     const values = {
@@ -336,12 +336,14 @@
     const bill2 = {
         bank: {}
     }
-    function getBillValueFrom(bill){
+
+    function getBillValueFrom(bill) {
         // return (bill && bill.bank && bill.bank.amount && bill.bank.amount.value)
         // ? bill.bank.amount.value
         //     : undefined;
         return bill?.bank?.amount?.value;
     }
+
     console.log(getBillValueFrom(bill1));
     console.log(getBillValueFrom(bill2));
 
@@ -422,11 +424,12 @@
             console.log('Old:', promise);
         }
     }
- /*   Promise.all([p1,p2,p3]) //редко используетcя - вылетает reject на p2 и заканчивается выполнение Promise.all
-    Promise.allSettled([1,2]) //используется
-.then(res => {
-    console.log(res);
-})*/
+
+    /*   Promise.all([p1,p2,p3]) //редко используетcя - вылетает reject на p2 и заканчивается выполнение Promise.all
+       Promise.allSettled([1,2]) //используется
+   .then(res => {
+       console.log(res);
+   })*/
     old();
 
     async function modern() {
@@ -451,5 +454,228 @@
     const techs = ['react redux', 'angular', 'vue', 'deno and node'];
     console.log(techs.map(tech => tech.split(" ")).flat()); //эквивалентно нижней записи
     console.log(techs.flatMap(tech => tech.split(" ")));
+    let fake = 0;
+    let str1 = 'klm4899';
+    let str2 = 'ndn4899';
+    for (let i = 0; i < str1.length; i++) {
+        if (str1[i] !== str2[i]) {
+            fake++;
+            if (fake > 3) {
+                console.log("Fake")
+            }
+        }
+
+    }
+
+
+    let daysOfWeek = [
+        {name: 'Monday', isOpen: false},
+        {name: 'Tuesday', isOpen: true},
+        {name: 'Wednesday', isOpen: true},
+        {name: 'Friday', isOpen: true},
+        {name: 'Saturday', isOpen: false},
+        {name: 'Sunday', isOpen: false},
+    ]
+
+    //1 способ
+    function bookAppointment1(nameBook, indexBook) {
+        let arr1 = daysOfWeek.slice(indexBook);
+        if (arr1.some(item => item.isOpen)) {
+            return arr1.find(item => item.name && item.isOpen).name;
+        }
+        let arr2 = daysOfWeek.slice(0, indexBook);
+        return arr2.find(item => item.name && item.isOpen).name;
+    }
+
+    let nameDay = 'Saturday';
+    let indexDay = daysOfWeek.findIndex(item => item.name === nameDay);
+    const t1 = performance.now();
+    let result1 = bookAppointment1(nameDay, indexDay);
+    console.log(result1);
+    const t2 = performance.now();
+    console.log("Call to doSomething took " + (t2 - t1) + " microseconds.")
+
+    //2 способ
+    function bookAppointment2(nameBook, indexBook) {
+        let obj = daysOfWeek[indexBook];
+        if (obj.isOpen) {
+            return obj.name;
+        } else if (indexBook === daysOfWeek.length - 1) {
+            return bookAppointment2(nameBook, 0);
+        } else {
+            indexBook++;
+            return bookAppointment2(nameBook, indexBook);
+        }
+    }
+
+    const t3 = performance.now();
+    let result2 = bookAppointment2(nameDay, indexDay);
+    console.log(result2);
+    const t4 = performance.now();
+    console.log("Call to doSomething took " + (t4 - t3) + " microseconds.");
+
+    /*Замыкание*/
+    function counter() {
+        let number = 0;
+
+        function add() {
+            number++;
+            console.log(number);
+        }
+
+        return add;
+
+    }
+
+    const c1 = counter();
+    console.log(c1);
+    c1();
+    c1();
+
+    const c2 = counter();
+    c2();
+    /* Рекурсия */
+    arrIterator = [5, 4, 7, 8]
+
+    function iterator(arr, index = 0) {
+        if (index === arr.length) {
+            return;
+        }
+        console.log(arr[index]);
+        index++;
+        return iterator(arr, index)
+    }
+
+    iterator(arrIterator);
+
+    let task1 = function () {
+        let t1 = Date.now();
+        setTimeout(() => {
+            console.log('task1');
+            let t2 = Date.now();
+            console.log(t2 - t1 + 'ms task1');
+            let t8 = Date.now();
+            console.log(t8 - t7 + 'ms task1+task2')
+        }, 5000);
+
+    }
+    let task2 = function () {
+        let t5 = Date.now();
+        setTimeout(() => {
+            console.log('task1');
+            let t6 = Date.now();
+            console.log(t6 - t5 + 'ms task2')
+        }, 3000);
+
+    }
+    let t7 = Date.now();
+    task1();
+    task2();
+
+    /*Добавление прототипа*/
+    function Animal(name) {
+        this.name = name;
+        //this.run = function (){ //каждый раз будет создаваться для нового New Animal
+        //console.log(`${this.name} is runing`);
+        //}
+    }
+
+    Animal.prototype.run = function () { //правильный вариант - создасться один раз при первом вызове New Animal и будет переиспользываться при последующих New Animal
+        console.log(`${this.name} is runing`);  //экномия памяти получается
+    }
+
+
+    /*Функциональное наследование*/
+    function Hamster(name, speed) {
+        this.name = name;
+        this.speed = speed;
+    }
+
+    //Hamster.prototype = Animal.prototype; - самый плохой вариант из-за мутации
+    //Hamster.prototype.__proto__ = Animal.prototype; - вариант на крайний случай, если не работает следующий, который ниже
+    Hamster.protype = Object.create(Animal.prototype);
+
+
+    Hamster.prototype.run = function () {
+        console.log(`${this.name} is Daba-daba-du`);
+    }
+    let semka = new Animal('Semka');
+    let grushka = new Animal('Grushka');
+    let zakolka = new Hamster('Zakolka');
+    semka.run();
+    grushka.run();
+    zakolka.run();
+
+    /*Protortype*/
+    function Hamster1(name) {
+        this.name = name;
+        this.stomach = [];
+    }
+
+    // Hamster1.prototype.stomach = []; //нельзя использовать т.к. накормим сразу двух при вызове zakolka1.findFood('Apple')
+    Hamster1.prototype.findFood = function (food) {
+        this.stomach.push(food);
+    }
+    let zakolka1 = new Hamster1('Zakolka');
+    let barabashka1 = new Hamster1('Barabashka');
+    zakolka1.findFood('Apple');
+    zakolka1.findFood('Peach');
+    console.log(zakolka1.stomach);
+    console.log('___________________')
+    console.log(barabashka1.stomach);
+
+    /*Тот же пример на классах */
+    class AnimalC {
+        constructor(name) {
+            this.name = name;
+        }
+
+        run() {
+            console.log(`${this.name} is runing`);
+        }
+    }
+
+    let semka1 = new AnimalC('Semka');
+    let grushka1 = new AnimalC('Grushka');
+    semka1.run();
+    grushka1.run();
+    /*Обращение к концу массива*/
+    arrFinal = [3, 5, 9, 10];
+    console.log(arrFinal.at(-1)); //возвращает последний элемент массива, arrFinal.at(0) - вернет 3, т.е. первый элемент массива
+    console.log(arrFinal[arrFinal.length - 1]);
+
+    /*Типы patternov - повторяемая архитектурная конструкция(концепция), представляющая собой решение проблемы проектированая в рамках некоторого часто возникающего контекста*/
+    /*
+    Пример: MVC - module vue controller - определяет поведение и структуру всего проекта
+    Категории:
+    1. Creational - позволяют создавать объекты и классы, управляют этим процессом,
+    2. Design structure patterny - структурные служат для того, когда есть большая система, добавляет новый функционал для объектов этой системы, не меняют поведение прошлой системы ,
+    3. Behavior design patterny - служат для налаживания коммуникации между существующими объектами, классами, APi
+    Creational:
+    Сonstructor,
+    Factory,
+    Prototype,
+    Singleton
+
+    Design structure patterny:
+    Adapter,
+    Decorator,
+    Facade (пример: библиотека jquery),
+    Flyweight(кеширование и сохранение памяти),
+    Proxy
+
+    Behavior design patterny (поведенческие):
+    Chain of responsibility (пример: библиотека jquery),
+    Command (пример: Redux),
+    Iterator,
+    Mediator,
+    Observer (publisher subscriber, dispatcher, listener) - пример библиотека RxJS, Angular
+    State (используется для организации роутинга),
+    Strategy,
+    Template
+     */
+    /*Soft, Epam, Elex*/
+    /*refactoring.guru*/
+
 </script>
 </html>

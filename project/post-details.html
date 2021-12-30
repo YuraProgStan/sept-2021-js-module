@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Post details</title>
+    <style>
+        * {
+            font-size: 18px;
+        }
+        .container>div:nth-child(even){
+            background: azure;
+        }
+
+        div {
+            display: flex;
+            flex-direction: column;
+            padding: 5px;
+            row-gap: 5px;
+            border: 1px solid cadetblue;
+        }
+        .div-comments {
+            display: grid;
+            grid-template-columns: repeat(4, minmax(50px, 1fr));
+            grid-template-rows: auto;
+            gap: 5px;
+        }
+        .div-comments>div:nth-child(even){
+            background: azure;
+        }
+    </style>
+</head>
+<body>
+<script src="postdetails.js"></script>
+</body>
+</html>

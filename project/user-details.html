@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>User details</title>
+    <style>
+        * {
+            font-size: 18px;
+        }
+
+        div {
+            display: flex;
+            flex-direction: column;
+            padding: 5px;
+            row-gap: 5px;
+            border: 1px solid cadetblue;
+        }
+.container>div:nth-child(odd){
+    background: azure;
+}
+        .div-btn {
+            align-items: center;
+            border: none;
+        }
+
+        button {
+            width: 90%;
+            background: darkred;
+            font-weight: bold;
+            color: #fff;
+            border: none;
+            border-radius: 20px;
+            padding: 10px 0;
+        }
+
+        .div-post-titles {
+            display: grid;
+            grid-template-columns: repeat(5, minmax(50px, 1fr));
+            grid-template-rows: auto;
+            gap: 5px;
+        }
+        .div-post-titles>div:nth-child(even){
+            background: azure;
+        }
+
+    </style>
+</head>
+<body>
+<script src='userdetails.js'></script>
+</body>
+</html>

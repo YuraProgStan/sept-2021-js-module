@@ -644,6 +644,45 @@
     console.log(arrFinal.at(-1)); //возвращает последний элемент массива, arrFinal.at(0) - вернет 3, т.е. первый элемент массива
     console.log(arrFinal[arrFinal.length - 1]);
 
+    //Создание уникальных id или с помощью библиотеки uuid
+    function uniqueId() {
+        return Math.floor(Math.random() * Math.floor(Math.random() * Date.now()));
+    }
+
+    //Пример инкапсуляции в JS
+    class User{
+        #_username;
+        #_password;
+        #_id;
+
+        constructor(username,password) {
+            this.username = username;
+            this.password = password;
+            this._id = uniqueId();
+        }
+        get username(){
+            return this._username;
+        }
+        set username(value){
+            this._username = value;
+        }
+        get password(){
+            return this._password;
+        }
+        set password(value){
+            this._password = value;
+        }
+        get id(){
+            return this._id;
+        }
+
+    }
+const user1 = new User('Yura', 'dfsdf');
+    user1.username = 'Petya';
+    user1.id = 34535;//не срабатывает так как нет set
+    console.log('username = ',user1.username);
+    console.log('userid = ',user1.id);
+
     /*Метод assign для объектов*/
     /*Метод Object.assign () копирует все перечисляемые собственные свойства из одного или нескольких исходных объектов (source) в целевой объект.
     Он возвращает измененный целевой (target) объект.
